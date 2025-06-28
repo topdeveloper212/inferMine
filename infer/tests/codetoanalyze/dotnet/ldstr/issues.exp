@@ -1,0 +1,1 @@
+codetoanalyze/dotnet/ldstr/NullExceptionLdstr.cs, Void TestCodeLdstr.NullExceptionLdstrBad(), 3, NULLPTR_DEREFERENCE, no_bucket

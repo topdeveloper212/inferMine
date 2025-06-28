@@ -1,0 +1,160 @@
+/* @generated */
+digraph cfg {
+"objc_block_specialized_method_wit.f16868ddd5e62dc0_1" [label="1: Start objc_block_specialized_method_with_block_params.m:27\nFormals:  i:int\nLocals: \nCaptured:  [by value]&self:A* [by value]&x:int \n  " color=yellow style=filled]
+	
+
+	 "objc_block_specialized_method_wit.f16868ddd5e62dc0_1" -> "objc_block_specialized_method_wit.f16868ddd5e62dc0_3" ;
+"objc_block_specialized_method_wit.f16868ddd5e62dc0_2" [label="2: Exit objc_block_specialized_method_with_block_params.m:27 \n  " color=yellow style=filled]
+	
+
+"objc_block_specialized_method_wit.f16868ddd5e62dc0_3" [label="3:  BinaryOperatorStmt: Assign \n   n$6=*&x:int [line 28, column 19]\n  n$5=*&self:A* [line 28, column 9]\n  *n$5.x:int=n$6 [line 28, column 9]\n " shape="box"]
+	
+
+	 "objc_block_specialized_method_wit.f16868ddd5e62dc0_3" -> "objc_block_specialized_method_wit.f16868ddd5e62dc0_2" ;
+"objc_block_specialized_method_wit.d5579054493013ee_1" [label="1: Start objc_block_specialized_method_with_block_params.m:30\nFormals:  i:int\nLocals: \nCaptured:  [by value]&self:A* \n  " color=yellow style=filled]
+	
+
+	 "objc_block_specialized_method_wit.d5579054493013ee_1" -> "objc_block_specialized_method_wit.d5579054493013ee_3" ;
+"objc_block_specialized_method_wit.d5579054493013ee_2" [label="2: Exit objc_block_specialized_method_with_block_params.m:30 \n  " color=yellow style=filled]
+	
+
+"objc_block_specialized_method_wit.d5579054493013ee_3" [label="3:  BinaryOperatorStmt: Assign \n   n$9=*&i:int [line 31, column 19]\n  n$8=*&self:A* [line 31, column 9]\n  *n$8.x:int=n$9 [line 31, column 9]\n " shape="box"]
+	
+
+	 "objc_block_specialized_method_wit.d5579054493013ee_3" -> "objc_block_specialized_method_wit.d5579054493013ee_2" ;
+"objc_block_specialized_method_wit.866afacefb3561d4_1" [label="1: Start objc_block_specialized_method_with_block_params.m:40\nFormals:  i:int\nLocals: \nCaptured:  [by value]&self:A* \n  " color=yellow style=filled]
+	
+
+	 "objc_block_specialized_method_wit.866afacefb3561d4_1" -> "objc_block_specialized_method_wit.866afacefb3561d4_3" ;
+"objc_block_specialized_method_wit.866afacefb3561d4_2" [label="2: Exit objc_block_specialized_method_with_block_params.m:40 \n  " color=yellow style=filled]
+	
+
+"objc_block_specialized_method_wit.866afacefb3561d4_3" [label="3:  BinaryOperatorStmt: Assign \n   n$15=*&self:A* [line 41, column 9]\n  *n$15.x:int=5 [line 41, column 9]\n " shape="box"]
+	
+
+	 "objc_block_specialized_method_wit.866afacefb3561d4_3" -> "objc_block_specialized_method_wit.866afacefb3561d4_2" ;
+"objc_block_specialized_method_wit.667bc55797d1ca78_1" [label="1: Start objc_block_specialized_method_with_block_params.m:43\nFormals:  i:int\nLocals: \nCaptured:  [by value]&self:A* \n  " color=yellow style=filled]
+	
+
+	 "objc_block_specialized_method_wit.667bc55797d1ca78_1" -> "objc_block_specialized_method_wit.667bc55797d1ca78_3" ;
+"objc_block_specialized_method_wit.667bc55797d1ca78_2" [label="2: Exit objc_block_specialized_method_with_block_params.m:43 \n  " color=yellow style=filled]
+	
+
+"objc_block_specialized_method_wit.667bc55797d1ca78_3" [label="3:  BinaryOperatorStmt: Assign \n   n$17=*&self:A* [line 44, column 9]\n  *n$17.x:int=5 [line 44, column 9]\n " shape="box"]
+	
+
+	 "objc_block_specialized_method_wit.667bc55797d1ca78_3" -> "objc_block_specialized_method_wit.667bc55797d1ca78_2" ;
+"objc_block_specialized_method_wit.982152dd64690368_1" [label="1: Start objc_block_specialized_method_with_block_params.m:51\nFormals:  i:int\nLocals: \nCaptured:  [by value]&self:A* \n  " color=yellow style=filled]
+	
+
+	 "objc_block_specialized_method_wit.982152dd64690368_1" -> "objc_block_specialized_method_wit.982152dd64690368_3" ;
+"objc_block_specialized_method_wit.982152dd64690368_2" [label="2: Exit objc_block_specialized_method_with_block_params.m:51 \n  " color=yellow style=filled]
+	
+
+"objc_block_specialized_method_wit.982152dd64690368_3" [label="3:  BinaryOperatorStmt: Assign \n   n$31=*&self:A* [line 52, column 5]\n  *n$31.x:int=5 [line 52, column 5]\n " shape="box"]
+	
+
+	 "objc_block_specialized_method_wit.982152dd64690368_3" -> "objc_block_specialized_method_wit.982152dd64690368_2" ;
+"foo.acbd18db4cc2f85c_1" [label="1: Start foo\nFormals:  <_Nullable> my_block1:(_fn_ [int] -> void)(_Nullable *) <_Nullable> my_block2:(_fn_ [int] -> void)(_Nullable *) <_Nonnull> a:A*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "foo.acbd18db4cc2f85c_1" -> "foo.acbd18db4cc2f85c_3" ;
+"foo.acbd18db4cc2f85c_2" [label="2: Exit foo \n  " color=yellow style=filled]
+	
+
+"foo.acbd18db4cc2f85c_3" [label="3:  Call n$0 \n   n$0=*&my_block1:(_fn_ [int] -> void)(_Nullable *) [line 16, column 3]\n  n$1=_fun___call_objc_block(n$0:_fn_,22:int) objc_block [line 16, column 3]\n " shape="box"]
+	
+
+	 "foo.acbd18db4cc2f85c_3" -> "foo.acbd18db4cc2f85c_2" ;
+"p.83878c9117133890_1" [label="1: Start p\nFormals: \nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "p.83878c9117133890_1" -> "p.83878c9117133890_3" ;
+"p.83878c9117133890_2" [label="2: Exit p \n  " color=yellow style=filled]
+	
+
+"p.83878c9117133890_3" [label="3:  Return Stmt \n   *&return:int=0 [line 13, column 11]\n " shape="box"]
+	
+
+	 "p.83878c9117133890_3" -> "p.83878c9117133890_2" ;
+"bar2#A#[instance].2f0519276ed04788_1" [label="1: Start A.bar2\nFormals:  self:A*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "bar2#A#[instance].2f0519276ed04788_1" -> "bar2#A#[instance].2f0519276ed04788_5" ;
+"bar2#A#[instance].2f0519276ed04788_2" [label="2: Exit A.bar2 \n  " color=yellow style=filled]
+	
+
+"bar2#A#[instance].2f0519276ed04788_3" [label="3:  Return Stmt \n   n$12=*&self:A* [line 47, column 10]\n  n$13=*n$12.x:int [line 47, column 10]\n " shape="box"]
+	
+
+	 "bar2#A#[instance].2f0519276ed04788_3" -> "bar2#A#[instance].2f0519276ed04788_4" ;
+"bar2#A#[instance].2f0519276ed04788_4" [label="4:  Return Stmt \n   *&return:int=n$13 [line 47, column 3]\n " shape="box"]
+	
+
+	 "bar2#A#[instance].2f0519276ed04788_4" -> "bar2#A#[instance].2f0519276ed04788_2" ;
+"bar2#A#[instance].2f0519276ed04788_5" [label="5:  Compound statement \n   n$14=*&self:A* [line 40, column 7]\n  n$16=*&self:A* [line 43, column 7]\n  n$18=*&self:A* [line 46, column 7]\n  n$19=_fun_foo((_fun_objc_block_specialized_method_with_block_params.m:40,([by value]n$14 &self:A*)):(_fn_ [int] -> void)(*),(_fun_objc_block_specialized_method_with_block_params.m:43,([by value]n$16 &self:A*)):(_fn_ [int] -> void)(*),n$18:A*) [line 39, column 3]\n " shape="box"]
+	
+
+	 "bar2#A#[instance].2f0519276ed04788_5" -> "bar2#A#[instance].2f0519276ed04788_3" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_1" [label="1: Start A.bar:\nFormals:  self:A* a:A*\nLocals:  y:int x:int \n  " color=yellow style=filled]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_1" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_7" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_2" [label="2: Exit A.bar: \n  " color=yellow style=filled]
+	
+
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_3" [label="3:  Return Stmt \n   n$0=*&self:A* [line 35, column 10]\n  n$1=*n$0.x:int [line 35, column 10]\n " shape="box"]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_3" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_4" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_4" [label="4:  Return Stmt \n   *&return:int=n$1 [line 35, column 3]\n " shape="box"]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_4" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_2" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_5" [label="5:  DeclStmt \n   VARIABLE_DECLARED(y:int); [line 34, column 3]\n  n$2=_fun_p() [line 34, column 11]\n  *&y:int=n$2 [line 34, column 3]\n " shape="box"]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_5" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_3" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_6" [label="6:  Compound statement \n   n$3=*&self:A* [line 27, column 7]\n  n$4=*&x:int [line 27, column 7]\n  n$7=*&self:A* [line 30, column 7]\n  n$10=*&a:A* [line 33, column 7]\n  n$11=_fun_foo((_fun_objc_block_specialized_method_with_block_params.m:27,([by value]n$3 &self:A*),([by value]n$4 &x:int)):(_fn_ [int] -> void)(*),(_fun_objc_block_specialized_method_with_block_params.m:30,([by value]n$7 &self:A*)):(_fn_ [int] -> void)(*),n$10:A*) [line 26, column 3]\n " shape="box"]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_6" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_5" ;
+"bar:#A(class A)#[instance].8e6cfff8b86359b6_7" [label="7:  DeclStmt \n   VARIABLE_DECLARED(x:int); [line 25, column 3]\n  *&x:int=0 [line 25, column 3]\n " shape="box"]
+	
+
+	 "bar:#A(class A)#[instance].8e6cfff8b86359b6_7" -> "bar:#A(class A)#[instance].8e6cfff8b86359b6_6" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_1" [label="1: Start A.call_foo_with_same_param\nFormals:  self:A*\nLocals:  b:(_fn_ [int] -> void)(_Nullable *) \n  " color=yellow style=filled]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_1" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_7" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_2" [label="2: Exit A.call_foo_with_same_param \n  " color=yellow style=filled]
+	
+
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_3" [label="3:  Return Stmt \n   n$20=*&self:A* [line 56, column 10]\n  n$21=*n$20.x:int [line 56, column 10]\n " shape="box"]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_3" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_4" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_4" [label="4:  Return Stmt \n   *&return:int=n$21 [line 56, column 3]\n " shape="box"]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_4" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_2" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_5" [label="5:  Call _fun_foo \n   n$22=*&b:(_fn_ [int] -> void)(_Nullable *) [line 55, column 7]\n  n$23=*&b:(_fn_ [int] -> void)(_Nullable *) [line 55, column 10]\n  n$24=*&self:A* [line 55, column 13]\n  n$25=_fun_foo(n$22:(_fn_ [int] -> void)(_Nullable *),n$23:(_fn_ [int] -> void)(_Nullable *),n$24:A*) [line 55, column 3]\n " shape="box"]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_5" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_3" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_6" [label="6:  Call _fun_foo \n   n$26=*&b:(_fn_ [int] -> void)(_Nullable *) [line 54, column 7]\n  n$27=*&b:(_fn_ [int] -> void)(_Nullable *) [line 54, column 10]\n  n$28=*&self:A* [line 54, column 13]\n  n$29=_fun_foo(n$26:(_fn_ [int] -> void)(_Nullable *),n$27:(_fn_ [int] -> void)(_Nullable *),n$28:A*) [line 54, column 3]\n " shape="box"]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_6" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_5" ;
+"call_foo_with_same_param#A#[insta.0f7e046192340a49_7" [label="7:  DeclStmt \n   VARIABLE_DECLARED(b:(_fn_ [int] -> void)(_Nullable *)); [line 51, column 3]\n  n$30=*&self:A* [line 51, column 20]\n  *&b:(_fn_ [int] -> void)(*)=(_fun_objc_block_specialized_method_with_block_params.m:51,([by value]n$30 &self:A*)) [line 51, column 3]\n " shape="box"]
+	
+
+	 "call_foo_with_same_param#A#[insta.0f7e046192340a49_7" -> "call_foo_with_same_param#A#[insta.0f7e046192340a49_6" ;
+"dealloc#A#[instance].cb1004dc8428c0dc_1" [label="1: Start A.dealloc\nFormals:  self:A*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#A#[instance].cb1004dc8428c0dc_1" -> "dealloc#A#[instance].cb1004dc8428c0dc_2" ;
+"dealloc#A#[instance].cb1004dc8428c0dc_2" [label="2: Exit A.dealloc \n  " color=yellow style=filled]
+	
+
+}

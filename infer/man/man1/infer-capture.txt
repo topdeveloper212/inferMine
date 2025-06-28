@@ -1,0 +1,413 @@
+NAME
+       infer-capture - capture source files for later analysis
+
+SYNOPSIS
+       infer capture --buck-java [options] -- buck ...
+       infer capture --buck-clang [options] -- buck ...
+       infer capture --buck-compilation-database [no-]deps [options] -- buck ...
+       infer capture [options] --compilation-database file
+       infer capture [options] --compilation-database-escaped file
+       infer capture [options] -- gradle/gradlew ...
+       infer capture [options] -- hackc ...
+       infer capture [options] -- javac ...
+       infer capture [options] -- make/clang/gcc ...
+       infer capture [options] -- mvn/mvnw ...
+       infer capture [options] -- ndk-build ...
+       infer capture [--no-xcpretty] [options] -- xcodebuild ...
+       infer capture --cfg-json file.json --tenv-json file.json [options]
+
+DESCRIPTION
+       Capture the build command, compilation database, or cfg/tenv json
+       files specified on the command line: infer intercepts calls to the
+       compiler to read source files, translate them into infer's
+       intermediate representation, and store the result of the translation
+       in the results directory.
+
+OPTIONS
+       --bitcode-capture
+           Activates: [EXPERIMENTAL] Use llvm frontend to capture files
+           compiled with clang (Conversely: --no-bitcode-capture)
+
+       --capture-block-list json
+           Matcher or list of matchers for names of files that should not be
+           captured, hence not analyzed either. Clang, Java, and Hack only.
+
+       --cfg-json file
+           Path to CFG json file
+
+       --continue
+           Activates: Continue the capture for the reactive analysis,
+           increasing the changed files/procedures. (If a procedure was
+           changed beforehand, keep the changed marking.) (Conversely:
+           --no-continue)
+
+       --debug,-g
+           Activates: Debug mode (also sets --debug-level 2,
+           --developer-mode, --print-buckets, --print-types,
+           --reports-include-ml-loc, --no-only-cheap-debug, --trace-error,
+           --write-html) (Conversely: --no-debug | -G)
+
+       --debug-level level
+           Debug level (sets --bo-debug level, --debug-level-analysis level,
+           --debug-level-capture level):
+             - 0: only basic debugging enabled
+             - 1: verbose debugging enabled
+             - 2: very verbose debugging enabled
+
+       --debug-level-analysis int
+           Debug level for the analysis. See --debug-level for accepted
+           values.
+
+       --debug-level-capture int
+           Debug level for the capture. See --debug-level for accepted
+           values.
+
+       --debug-level-report int
+           Debug level for the report. See --debug-level for accepted values.
+
+       --force-delete-results-dir
+           Activates: Do not refuse to delete the results directory if it
+           doesn't look like an infer results directory. (Conversely:
+           --no-force-delete-results-dir)
+
+       --force-integration command
+           Proceed as if the first argument after -- was command. Possible
+           values: ant, buck, buck2, gradle, gradlew, java, javac, kotlinc,
+           cc, clang, gcc, clang++, c++, g++, hackc, make, configure, cmake,
+           waf, mvn, mvnw, ndk-build, python3, rebar3, rustc, swiftc, erlc,
+           xcodebuild.
+
+       --help
+           Show this manual
+
+       --help-format { auto | groff | pager | plain }
+           Show this help in the specified format. auto sets the format to
+           plain if the environment variable TERM is "dumb" or undefined, and
+           to pager otherwise.
+
+       --help-full
+           Show this manual with all internal options in the INTERNAL OPTIONS
+           section
+
+       --keep-going
+           Activates: Keep going when the analysis or capture encounter a
+           failure (Conversely: --no-keep-going)
+
+       --llvm-bitcode-file string
+           [EXPERIMENTAL] Use llvm frontend to directly capture the give
+           bitcode file
+
+       --llvm-bitcode-source +string
+           [EXPERIMENTAL] Specify source files for llvm bitcode capture
+
+       --mark-unchanged-procs
+           Activates: Check structural identity of newly-captured procedures
+           with previously-captured versions, marking the new procedure as
+           unchanged if the two are equivalent. Also prevents removing
+           results db during capture, so that unchanged results can be reused
+           during future incremental analyses (Conversely:
+           --no-mark-unchanged-procs)
+
+       --merge-capture +string
+           Specifies an Infer results directory. The files and procedures
+           captured in it will be merged together into the results directory
+           specified with -o. Relative paths are interpreted as relative to
+           project-root/buck-out.
+
+       --never-returning-null json
+           [Java only, all analyses] Matcher or list of matchers for
+           functions that never return null.
+
+       --print-logs
+           Activates: Also log messages to stdout and stderr (Conversely:
+           --no-print-logs)
+
+       --progress-bar-style { auto | plain | multiline }
+           Style of the progress bar. auto selects multiline if connected to
+           a tty, otherwise plain.
+
+       --project-root,-C dir
+           Specify the root directory of the project
+
+       --python-exe path
+           A filepath to a python interpreter. It will bypass the interpreter
+           set by PYTHON variable
+
+       --python-files-index path
+           A file containing a list of newline-separated Python files to
+           capture. Compatible with infer capture -- python3 file1.py
+           file2.py but not with --pyc-file.
+
+       --python-skip-capture-imports-threshold int
+           Maximum number of imports allowed in a file (we skip capture
+           otherwise).
+
+       --results-dir,-o dir
+           Write results and internal files in the specified directory
+
+       --run-python-interpreter
+           Activates: Capture all .py files, transform them into internal
+           PyIR form and run the PyIR interpreter on them. (Conversely:
+           --no-run-python-interpreter)
+
+       --skip-analysis-in-path +regex
+           Ignore files whose path matches a given regex (can be specified
+           multiple times, but you must make sure each regex is properly
+           bracketed)
+
+       --sqlite-cache-size int
+           SQLite cache size in pages (if positive) or kB (if negative),
+           follows formal of corresponding SQLite PRAGMA.
+
+       --sqlite-lock-timeout int
+           Timeout for SQLite results database operations, in milliseconds.
+
+       --sqlite-max-blob-size int
+           Maximum blob/string size for data written in SQLite.
+
+       --sqlite-mmap-size int
+           Size of memory map for mmaped SQLite databases, zero value
+           disables memory mapping.
+
+       --sqlite-page-size int
+           SQLite page size in bytes, must be a power of two between 512 and
+           65536.
+
+       --tenv-json file
+           Path to TEnv json file
+
+       --workspace path
+           Specifies the root of the workspace, which is a directory
+           containing --project-root. This can be needed if the capture phase
+           is expected to require several different project roots, all
+           relative to a common workspace. Usually a single project root is
+           enough, though.
+
+       --  Stop argument processing, use remaining arguments as a build
+           command
+
+BUCK OPTIONS
+       --buck-clang
+           Activates: Buck integration for clang-based targets
+           (C/C++/Objective-C/Objective-C++). (Conversely: --no-buck-clang)
+
+       --buck-compilation-database { no-deps | deps }
+           Buck integration using the compilation database, with or without
+           dependencies. Only includes clang targets, as per Buck's
+           #compilation-database flavor.
+
+       --buck-compilation-database-depth int
+           Depth of dependencies used by the --buck-compilation-database deps
+           option. By default, all recursive dependencies are captured.
+
+       --buck-dependency-depth int
+           Capture dependencies only if they are at most the depth provided,
+           or all transitive dependencies if depth is not provided (the
+           default). In particular, depth zero means capture exactly the
+           targets provided and nothing else.
+
+       --buck-erlang
+           Activates: Buck integration for Erlang. (Conversely:
+           --no-buck-erlang)
+
+       --buck-java
+           Activates: Buck integration for Java. (Conversely: --no-buck-java)
+
+       --buck-python
+           Activates: Buck integration for Python. (Conversely:
+           --no-buck-python)
+
+       --buck-swift
+           Activates: When using the BXL Clang integration, pass --swift
+           <bool> to control capture of Swift files. (Conversely:
+           --no-buck-swift)
+
+       --buck-swift-keep-going
+           Activates: When using the BXL Clang integration, pass
+           --swift-keep-going <bool>. (Conversely:
+           --no-buck-swift-keep-going)
+
+       --buck-targets-block-list +regex
+           Skip capture of buck targets matched by the specified regular
+           expression.
+
+       --buck2-bxl-capture-file-block-list +regex
+           Skip capture of files matched by the specified regular expression.
+           Only the clang, Buck2 integration is supported, not Java.
+
+       --buck2-bxl-target string
+           Buck2 BXL script (as a buck target) to run when capturing with
+           buck2/clang integration.
+
+       --buck2-inferconfig-target string
+           Buck2 target representing the inferconfig file; used in BXL
+           capture.
+
+       --buck2-infertoolchain-target string
+           Buck2 target representing the infer toolchain; used in BXL
+           capture.
+
+       --buck2-isolation-dir string
+           Run buck bxl capture with the given isolation directory as
+           parameter.
+
+       --no-buck2-query-deps
+           Deactivates: Query deps of given targets and run capture on the
+           result (alternatively run capture on given targets) (Conversely:
+           --buck2-query-deps)
+
+       --buck2-root dir
+           Specify the parent directory of buck-out (used only for buck2).
+
+       --Xbuck2 +string
+           Pass values as command-line arguments to invocations of `buck2
+           build`. Only valid for --buck-clang.
+
+       --Xbuck2-no-inline +string
+           Pass values as command-line arguments to invocations of `buck2
+           build`, don't inline any args starting with '@'. Only valid for
+           --buck-clang.
+
+CLANG OPTIONS
+       --clang-biniou-file file
+           Specify a file containing the AST of the program, in biniou
+           format. Please note you still need to provide a compilation
+           command.
+
+       --clang-block-listed-flags +string
+           Clang flags to filter out
+
+       --clang-block-listed-flags-with-arg +string
+           Clang flags (taking args) to filter out
+
+       --clang-compound-literal-init-limit int
+           Limit after which initialization of compound types (structs and
+           arrays) is not done element by element but using a builtin
+           function that each analysis has to model.
+
+       --clang-yojson-file file
+           Specify a file containing the AST of the program, in yojson
+           format. Please note you still need to provide a compilation
+           command.
+
+       --compilation-database +path
+           File that contain compilation commands (can be specified multiple
+           times)
+
+       --compilation-database-escaped +path
+           File that contain compilation commands where all entries are
+           escaped for the shell, eg coming from Xcode (can be specified
+           multiple times)
+
+       --no-cxx
+           Deactivates: Analyze C++ methods (Conversely: --cxx)
+
+       --dump-duplicate-symbols
+           Activates: Dump all symbols with the same name that are defined in
+           more than one file. (Conversely: --no-dump-duplicate-symbols)
+
+       --frontend-tests
+           Activates: Save filename.ext.test.dot with the cfg in dotty format
+           for frontend tests (also sets --print-types) (Conversely:
+           --no-frontend-tests)
+
+       --headers
+           Activates: Analyze code in header files (Conversely: --no-headers)
+
+       --objc-synthesize-dealloc
+           Activates: If enabled, the capture tries to synthesize code in the
+           dealloc methods of Objective-C classes corresponding to what the
+           compiler does. (Conversely: --no-objc-synthesize-dealloc)
+
+       --skip-non-capture-clang-commands
+           Activates: Skip clang commands that Infer doesn't use to capture
+           data (Conversely: --no-skip-non-capture-clang-commands)
+
+       --skip-translation-headers +path_regex
+           Ignore declarations in headers whose path matches the given OCaml
+           regex from the start of the string during capture.
+
+       --struct-as-cpp-class
+           Activates: Translate C structs as C++ classes. This can be useful
+           when analyzing C/C++ code to make sure struct global variables
+           shared between C and C++ source files are treated as same
+           variables
+                (Conversely: --no-struct-as-cpp-class)
+
+       --Xclang +string
+           Pass values as command-line arguments to invocations of clang
+
+       --xcpretty
+           Activates: Infer will use xcpretty together with xcodebuild to
+           analyze an iOS app. xcpretty just needs to be in the path, infer
+           command is still just `infer -- <xcodebuild command>`.
+           (Conversely: --no-xcpretty)
+
+ERLANG OPTIONS
+       --erlang-ast-dir dir
+           Also load AST from all .json files in the given path. These .json
+           files usually come from a previous run with --debug.
+
+       --erlang-check-return
+           Activates: Check whether the values returned by functions
+           correspond to what the function's spec promises. This check is
+           introduced at capture time. (Conversely: --no-erlang-check-return)
+
+       --no-erlang-reliability
+           Deactivates: Analyze crashing executions. This flag affects both
+           capture and analysis. At capture time, it encodes Erlang specs; at
+           (Pulse) analysis time, it models Erlang exceptions (builtin or OTP
+           ones). (Conversely: --erlang-reliability)
+
+       --erlang-skip-compile
+           Activates: Skip running compiler (erlc/rebar3), to save time. The
+           build command is basically ignored in this case. To be used
+           together with --erlang-ast-dir. (Conversely:
+           --no-erlang-skip-compile)
+
+       --erlang-with-otp-specs
+           Activates: [EXPERIMENTAL] Use type specs from OTP (available in
+           the system) to generate more precise Pulse summaries for unknown
+           library functions. (Conversely: --no-erlang-with-otp-specs)
+
+JAVA OPTIONS
+       --bootclasspath string
+           Specify the Java bootclasspath
+
+       --dependencies
+           Activates: Translate all the dependencies during the capture. The
+           classes in the given jar file will be translated. No sources
+           needed. (Conversely: --no-dependencies)
+
+       --generated-classes path
+           Specify where to load the generated class files
+
+       --java-jar-compiler path
+           Specify the Java compiler jar used to generate the bytecode
+
+       --java-version int
+           The version of Java being used. Set it to your Java version if mvn
+           is failing.
+
+       --no-kotlin-capture
+           Deactivates: Enable Kotlin capture. (Conversely: --kotlin-capture)
+
+       --no-mask-sawja-exceptions
+           Deactivates: Mask exceptions thrown by Sawja/Javalib during Java
+           capture (Conversely: --mask-sawja-exceptions)
+
+       --no-read-java-modules
+           Deactivates: Read java modules file using jimage. (Conversely:
+           --read-java-modules)
+
+ENVIRONMENT
+       INFER_ARGS, INFERCONFIG, INFER_STRICT_MODE
+           See the ENVIRONMENT section in the manual of infer(1).
+
+FILES
+       .inferconfig
+           See the FILES section in the manual of infer(1).
+
+SEE ALSO
+       infer-analyze(1), infer-compile(1), infer-run(1)
+

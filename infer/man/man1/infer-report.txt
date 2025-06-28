@@ -1,0 +1,434 @@
+NAME
+       infer-report - compute and manipulate infer reports
+
+SYNOPSIS
+       infer report
+       infer report --issues-tests
+       infer report --cost-issues-tests
+       infer report --config-impact-issues-tests
+       infer report --merge-report dir1 ... --merge-report dirN
+
+DESCRIPTION
+       When used without parameters, generate report output in Json. With a
+       --tests parameter, write out issues in a format suitable for tests.
+       With --merge-report, merge multiple JSON reports in one.
+
+OPTIONS
+       --no-censor-report +issue_type_regex
+           For debugging/experimentation only: Specify issues not to be
+           censored by --censor-report.
+
+       --censor-report +string
+           Specify a filter for issues to be censored by adding a
+           'censored_reason' field in the json report. Infer will not report
+           censored issues on the console output and in report.txt, but tools
+           that post-process the json report can take them into account. If
+           multiple filters are specified, they are applied in the order in
+           which they are specified. Each filter is applied to each issue
+           detected, and only issues which are accepted by all filters are
+           reported. Each filter is of the form:
+           `<issue_type_regex>:<filename_regex>:<reason_string>`. The first
+           two components are OCaml Str regular expressions, with an optional
+           `!` character prefix. If a regex has a `!` prefix, the polarity is
+           inverted, and the filter becomes a "block list" instead of a
+           "allow list". Each filter is interpreted as an implication: an
+           issue matches if it does not match the `issue_type_regex` or if it
+           does match the `filename_regex`. The filenames that are tested by
+           the regex are relative to the `--project-root` directory. The
+           `<reason_string>` is a non-empty string used to explain why the
+           issue was filtered.
+
+       --config-impact-data-file file
+           [ConfigImpact] Specify the file containing the config data
+
+       --config-impact-issues-tests file
+           Write a list of config impact issues in a format suitable for
+           config impact tests to file
+
+       --config-impact-max-callees-to-print int
+           Specify the maximum number of unchecked callees to print in the
+           config impact checker
+
+       --cost-issues-tests file
+           Write a list of cost issues in a format suitable for cost tests to
+           file
+
+       --debug,-g
+           Activates: Debug mode (also sets --debug-level 2,
+           --developer-mode, --print-buckets, --print-types,
+           --reports-include-ml-loc, --no-only-cheap-debug, --trace-error,
+           --write-html) (Conversely: --no-debug | -G)
+
+       --debug-level level
+           Debug level (sets --bo-debug level, --debug-level-analysis level,
+           --debug-level-capture level):
+             - 0: only basic debugging enabled
+             - 1: verbose debugging enabled
+             - 2: very verbose debugging enabled
+
+       --debug-level-analysis int
+           Debug level for the analysis. See --debug-level for accepted
+           values.
+
+       --debug-level-capture int
+           Debug level for the capture. See --debug-level for accepted
+           values.
+
+       --debug-level-report int
+           Debug level for the report. See --debug-level for accepted values.
+
+       --no-deduplicate
+           Deactivates: Apply issue-specific deduplication during analysis
+           and/or reporting. (Conversely: --deduplicate)
+
+       --deduplicate-by { location | trace }
+           Controls a generic deduplication mechanism. Issue description and
+           issue type are always taken into account when deduplicating for
+           reporting. In addition, one can also take into account the
+           location OR the trace. Using the trace to de-duplicate can result
+           in multiple distinct traces being reported at the same location,
+           which is not possible with the default deduplication by location.
+
+       --differential-filter-files string
+           Specify the file containing the list of source files for which a
+           differential report is desired. Source files should be specified
+           relative to project root or be absolute
+
+       --disable-issue-type +issue_type
+           Do not show reports coming from this type of issue. Each checker
+           can report a range of issue types. This option provides
+           fine-grained filtering over which types of issue should be
+           reported once the checkers have run. In particular, note that
+           disabling issue types does not make the corresponding checker not
+           run.
+           Available issue types are as follows:
+             
+           ARBITRARY_CODE_EXECUTION_UNDER_LOCK (enabled by default),
+             BAD_ARG (enabled by default),
+             BAD_ARG_LATENT (disabled by default),
+             BAD_GENERATOR (enabled by default),
+             BAD_GENERATOR_LATENT (disabled by default),
+             BAD_KEY (enabled by default),
+             BAD_KEY_LATENT (disabled by default),
+             BAD_MAP (enabled by default),
+             BAD_MAP_LATENT (disabled by default),
+             BAD_RECORD (enabled by default),
+             BAD_RECORD_LATENT (disabled by default),
+             BAD_RETURN (enabled by default),
+             BAD_RETURN_LATENT (disabled by default),
+             BLOCK_PARAMETER_NOT_NULL_CHECKED (enabled by default),
+             BUFFER_OVERRUN_L1 (enabled by default),
+             BUFFER_OVERRUN_L2 (enabled by default),
+             BUFFER_OVERRUN_L3 (enabled by default),
+             BUFFER_OVERRUN_L4 (disabled by default),
+             BUFFER_OVERRUN_L5 (disabled by default),
+             BUFFER_OVERRUN_S2 (enabled by default),
+             BUFFER_OVERRUN_U5 (disabled by default),
+             CAPTURED_STRONG_SELF (enabled by default),
+             CHECKERS_ALLOCATES_MEMORY (enabled by default),
+             CHECKERS_ANNOTATION_REACHABILITY_ERROR (enabled by default),
+             CHECKERS_CALLS_EXPENSIVE_METHOD (enabled by default),
+             CHECKERS_EXPENSIVE_OVERRIDES_UNANNOTATED (enabled by default),
+             CHECKERS_FRAGMENT_RETAINS_VIEW (enabled by default),
+             COMPARED_TO_NULL_AND_DEREFERENCED (disabled by default),
+             CONDITION_ALWAYS_FALSE (disabled by default),
+             CONDITION_ALWAYS_TRUE (disabled by default),
+             CONFIG_IMPACT (enabled by default),
+             CONFIG_IMPACT_STRICT (disabled by default),
+             CONFIG_USAGE (disabled by default),
+             CONSTANT_ADDRESS_DEREFERENCE (disabled by default),
+             CONSTANT_ADDRESS_DEREFERENCE_LATENT (disabled by default),
+             CXX_REF_CAPTURED_IN_BLOCK (enabled by default),
+             CXX_STRING_CAPTURED_IN_BLOCK (disabled by default),
+             DATA_FLOW_TO_SINK (disabled by default),
+             DEADLOCK (enabled by default),
+             DEAD_STORE (enabled by default),
+             DO_NOT_REPORT (enabled by default),
+             EXECUTION_TIME_COMPLEXITY_INCREASE (enabled by default),
+             EXECUTION_TIME_COMPLEXITY_INCREASE_UI_THREAD (enabled by
+           default),
+             EXECUTION_TIME_UNREACHABLE_AT_EXIT (disabled by default),
+             EXPENSIVE_EXECUTION_TIME (disabled by default),
+             EXPENSIVE_LOOP_INVARIANT_CALL (enabled by default),
+             GUARDEDBY_VIOLATION (enabled by default),
+             IMPURE_FUNCTION (enabled by default),
+             INEFFICIENT_KEYSET_ITERATOR (enabled by default),
+             INFERBO_ALLOC_IS_BIG (enabled by default),
+             INFERBO_ALLOC_IS_NEGATIVE (enabled by default),
+             INFERBO_ALLOC_IS_ZERO (enabled by default),
+             INFERBO_ALLOC_MAY_BE_BIG (enabled by default),
+             INFERBO_ALLOC_MAY_BE_NEGATIVE (enabled by default),
+             INFINITE_EXECUTION_TIME (disabled by default),
+             INFINITE_RECURSION (disabled by default),
+             INTEGER_OVERFLOW_L1 (enabled by default),
+             INTEGER_OVERFLOW_L2 (enabled by default),
+             INTEGER_OVERFLOW_L5 (disabled by default),
+             INTEGER_OVERFLOW_U5 (disabled by default),
+             INTERFACE_NOT_THREAD_SAFE (enabled by default),
+             INVALID_SIL (enabled by default),
+             INVARIANT_CALL (disabled by default),
+             IPC_ON_UI_THREAD (enabled by default),
+             LAB_RESOURCE_LEAK (enabled by default),
+             LINEAGE_FLOW (enabled by default),
+             LOCKLESS_VIOLATION (enabled by default),
+             LOCK_CONSISTENCY_VIOLATION (enabled by default),
+             LOCK_ON_UI_THREAD (disabled by default),
+             MEMORY_LEAK_C (enabled by default),
+             MEMORY_LEAK_CPP (disabled by default),
+             MISSING_REQUIRED_PROP (enabled by default),
+             MIXED_SELF_WEAKSELF (enabled by default),
+             MODIFIES_IMMUTABLE (enabled by default),
+             MULTIPLE_WEAKSELF (enabled by default),
+             MUTUAL_RECURSION_CYCLE (disabled by default),
+             NIL_BLOCK_CALL (enabled by default),
+             NIL_BLOCK_CALL_LATENT (disabled by default),
+             NIL_INSERTION_INTO_COLLECTION (enabled by default),
+             NIL_INSERTION_INTO_COLLECTION_LATENT (disabled by default),
+             NIL_MESSAGING_TO_NON_POD (enabled by default),
+             NIL_MESSAGING_TO_NON_POD_LATENT (disabled by default),
+             NO_MATCHING_BRANCH_IN_TRY (enabled by default),
+             NO_MATCHING_BRANCH_IN_TRY_LATENT (disabled by default),
+             NO_MATCHING_CASE_CLAUSE (enabled by default),
+             NO_MATCHING_CASE_CLAUSE_LATENT (disabled by default),
+             NO_MATCHING_ELSE_CLAUSE (enabled by default),
+             NO_MATCHING_ELSE_CLAUSE_LATENT (disabled by default),
+             NO_MATCHING_FUNCTION_CLAUSE (enabled by default),
+             NO_MATCHING_FUNCTION_CLAUSE_LATENT (disabled by default),
+             NO_MATCH_OF_RHS (enabled by default),
+             NO_MATCH_OF_RHS_LATENT (disabled by default),
+             NO_TRUE_BRANCH_IN_IF (enabled by default),
+             NO_TRUE_BRANCH_IN_IF_LATENT (disabled by default),
+             NSSTRING_INTERNAL_PTR_CAPTURED_IN_BLOCK (disabled by default),
+             NULLPTR_DEREFERENCE (enabled by default),
+             NULLPTR_DEREFERENCE_IN_NULLSAFE_CLASS (enabled by default),
+             NULLPTR_DEREFERENCE_IN_NULLSAFE_CLASS_LATENT (disabled by
+           default),
+             NULLPTR_DEREFERENCE_LATENT (disabled by default),
+             NULL_ARGUMENT (enabled by default),
+             NULL_ARGUMENT_LATENT (disabled by default),
+             OPTIONAL_EMPTY_ACCESS (enabled by default),
+             OPTIONAL_EMPTY_ACCESS_LATENT (disabled by default),
+             PULSE_ASSERTION_ERROR (disabled by default),
+             PULSE_CANNOT_INSTANTIATE_ABSTRACT_CLASS (disabled by default),
+             PULSE_CONST_REFABLE (enabled by default),
+             PULSE_DICT_MISSING_KEY (disabled by default),
+             PULSE_DYNAMIC_TYPE_MISMATCH (disabled by default),
+             PULSE_READONLY_SHARED_PTR_PARAM (enabled by default),
+             PULSE_REFERENCE_STABILITY (enabled by default),
+             PULSE_RESOURCE_LEAK (enabled by default),
+             PULSE_TRANSITIVE_ACCESS (enabled by default),
+             PULSE_UNAWAITED_AWAITABLE (enabled by default),
+             PULSE_UNFINISHED_BUILDER (disabled by default),
+             PULSE_UNINITIALIZED_CONST (disabled by default),
+             PULSE_UNINITIALIZED_METHOD (disabled by default),
+             PULSE_UNINITIALIZED_VALUE (enabled by default),
+             PULSE_UNNECESSARY_COPY (enabled by default),
+             PULSE_UNNECESSARY_COPY_ASSIGNMENT (enabled by default),
+             PULSE_UNNECESSARY_COPY_ASSIGNMENT_CONST (enabled by default),
+             PULSE_UNNECESSARY_COPY_ASSIGNMENT_MOVABLE (enabled by default),
+             PULSE_UNNECESSARY_COPY_INTERMEDIATE (enabled by default),
+             PULSE_UNNECESSARY_COPY_INTERMEDIATE_CONST (disabled by
+           default),
+             PULSE_UNNECESSARY_COPY_MOVABLE (enabled by default),
+             PULSE_UNNECESSARY_COPY_OPTIONAL (enabled by default),
+             PULSE_UNNECESSARY_COPY_OPTIONAL_CONST (disabled by default),
+             PULSE_UNNECESSARY_COPY_RETURN (disabled by default),
+             PULSE_UNNECESSARY_COPY_THRIFT_ASSIGNMENT (enabled by default),
+             PURE_FUNCTION (enabled by default),
+             REGEX_OP_ON_UI_THREAD (enabled by default),
+             RETAIN_CYCLE (enabled by default),
+             RETAIN_CYCLE_NO_WEAK_INFO (disabled by default),
+             SCOPE_LEAKAGE (enabled by default),
+             SELF_IN_BLOCK_PASSED_TO_INIT (enabled by default),
+             SENSITIVE_DATA_FLOW (disabled by default),
+             STACK_VARIABLE_ADDRESS_ESCAPE (enabled by default),
+             STARVATION (enabled by default),
+             STATIC_CONSTRUCTOR_STALL (disabled by default),
+             STATIC_INITIALIZATION_ORDER_FIASCO (enabled by default),
+             STRICT_MODE_VIOLATION (enabled by default),
+             STRONG_SELF_NOT_CHECKED (enabled by default),
+             TAINT_ERROR (enabled by default),
+             THREAD_SAFETY_VIOLATION (enabled by default),
+             TOPL_ERROR (enabled by default),
+             TOPL_ERROR_LATENT (disabled by default),
+             UNREACHABLE_CODE (enabled by default),
+             USE_AFTER_DELETE (enabled by default),
+             USE_AFTER_DELETE_LATENT (disabled by default),
+             USE_AFTER_FREE (enabled by default),
+             USE_AFTER_FREE_LATENT (disabled by default),
+             USE_AFTER_LIFETIME (enabled by default),
+             USE_AFTER_LIFETIME_LATENT (disabled by default),
+             VECTOR_INVALIDATION (enabled by default),
+             VECTOR_INVALIDATION_LATENT (disabled by default),
+             WEAK_SELF_IN_NO_ESCAPE_BLOCK (enabled by default).
+           
+
+       --enable-issue-type +issue_type
+           Show reports coming from this type of issue. By default, all issue
+           types are enabled except the ones listed in --disable-issue-type.
+           Note that enabling issue types does not make the corresponding
+           checker run; see individual checker options to turn them on or
+           off.
+
+       --no-filtering,-F
+           Deactivates: Do not show the experimental and block listed issue
+           types (Conversely: --filtering | -f)
+
+       --from-json-config-impact-report config-impact-report.json
+           Load costs analysis results from a config-impact-report file.
+
+       --from-json-costs-report costs-report.json
+           Load costs analysis results from a costs-report file.
+
+       --from-json-report report.json
+           Load analysis results from a report file (default is to load the
+           results from the specs files generated by the analysis).
+
+       --help
+           Show this manual
+
+       --help-format { auto | groff | pager | plain }
+           Show this help in the specified format. auto sets the format to
+           plain if the environment variable TERM is "dumb" or undefined, and
+           to pager otherwise.
+
+       --help-full
+           Show this manual with all internal options in the INTERNAL OPTIONS
+           section
+
+       --issues-tests file
+           Write a list of issues in a format suitable for tests to file
+
+       --issues-tests-fields ,-separated sequence of { bug_type | bucket |
+       qualifier | suggestion | severity | line | column | procedure |
+       procedure_start_line | file | bug_trace | key | hash | line_offset |
+       qualifier_contains_potential_exception_note | taint_extra |
+       transitive_callees_extra | suppressed | autofix }
+           Fields to emit with --issues-tests
+
+       --merge-report +string
+           Specifies an Infer results directory. The reports stored in JSON
+           files in all specified results directories will be merged together
+           and deduplicated before being stored in the main results
+           directory.
+
+       --merge-summaries +string
+           Specifies an Infer results directory. The summaries in all
+           specified results directories will be merged together and
+           deduplicated before reporting is done.
+
+       --print-logs
+           Activates: Also log messages to stdout and stderr (Conversely:
+           --no-print-logs)
+
+       --project-root,-C dir
+           Specify the root directory of the project
+
+       --quiet,-q
+           Activates: Do not print anything on standard output. (Conversely:
+           --no-quiet | -Q)
+
+       --report-allow-list-path-regex +path_regex
+           Report issues only on files whose relative path matches the
+           specified OCaml regex (and which do not match
+           --report-block-list-path-regex)
+
+       --report-block-list-files-containing +string
+           Do not report any issues on files containing the specified string
+
+       --report-block-list-path-regex +path_regex
+           Do not report any issues on files whose relative path matches the
+           specified OCaml regex, even if they match the allow list specified
+           by --report-allow-list-path-regex
+
+       --report-block-list-spec json
+           Do not report the issues in this list.
+                  Example format:
+                   "report-block-list-spec": [
+                       { "bug_type": "CXX_REF_CAPTURED_IN_BLOCK",
+                         "procedure_name": "foo",
+                         "file": "path/to/File.m"
+                         "comment": "This is a fp because..."
+                       },
+                       { "bug_type": "RETAIN_CYCLE",
+                         "class_name": "MyClass",
+                         "procedure_name": "my_method"
+                         "file": "path/to/File.m"
+                       }
+                   ]
+               
+
+       --report-console-limit int
+           Maximum number of issues to display on standard output. Unset with
+           --report-console-limit-reset to show all.
+
+       --report-formatter { none | phabricator }
+           Which formatter to use when emitting the report
+
+       --report-suppress-errors +error_name
+           do not report a type of errors
+
+       --results-dir,-o dir
+           Write results and internal files in the specified directory
+
+       --skip-analysis-in-path-skips-compilation
+           Activates: Whether paths in --skip-analysis-in-path should be
+           compiled or not (Conversely:
+           --no-skip-analysis-in-path-skips-compilation)
+
+       --no-suppressions
+           Deactivates: Suppress infer issues on source lines matching the
+           @infer-disable ISSUE_TYPE1, ISSUE_TYPE2, ... and
+           @infer-disable-every ISSUE_TYPE1, ISSUE_TYPE2, ... keywords.
+           (Conversely: --suppressions)
+
+HOISTING OPTIONS
+       --no-hoisting-report-only-expensive
+           Deactivates: [Hoisting] Report loop-invariant calls only when the
+           function is expensive, i.e. at least linear (Conversely:
+           --hoisting-report-only-expensive)
+
+LINEAGE OPTIONS
+       --lineage-sanitizers +string
+           [EXPERIMENTAL; UNSTABLE API] Lineage sanitizers, comma-separated
+           m:f/a
+
+       --lineage-sink +string
+           [EXPERIMENTAL; UNSTABLE API] Lineage sinks for taint finding,
+           format [module:]function/arity.{ret,argN}, comma-separated. Must
+           be used with --lineage-source as options to the report subcommand.
+           
+           Will produce a graph materializing the flows between the sources
+           and the sinks along with a json issues file. The issues file will
+           contain one trace per sink, exhibiting a shortest path from a
+           source. The report command will print the filesystem paths of the
+           files containing those results.
+
+       --lineage-source +string
+           [EXPERIMENTAL; UNSTABLE API] Lineage sources for taint finding,
+           format [module:]function/arity.{ret,argN}, comma-separated.
+           
+           See --lineage-sink for additional documentation.
+
+PULSE CHECKER OPTIONS
+       --pulse-report-assert
+           Activates: Reports Assertion Error in a failed assertion. Used in
+           C code. (Conversely: --no-pulse-report-assert)
+
+       --pulse-report-flows-from-taint-source procname
+           Report data flows which originate at taint source procname
+
+       --pulse-report-flows-to-taint-sink procname
+           Report data flows which pass through taint sink procname
+
+ENVIRONMENT
+       INFER_ARGS, INFERCONFIG, INFER_STRICT_MODE
+           See the ENVIRONMENT section in the manual of infer(1).
+
+FILES
+       .inferconfig
+           See the FILES section in the manual of infer(1).
+
+SEE ALSO
+       infer-reportdiff(1), infer-run(1)
+

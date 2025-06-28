@@ -1,0 +1,7 @@
+{  "capture-block-list": [
+    {
+      "source_contains": "@generated",
+      "source_not_contains": "@Immutable"
+    }
+]
+}

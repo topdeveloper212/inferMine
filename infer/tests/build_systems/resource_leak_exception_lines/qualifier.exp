@@ -1,0 +1,2 @@
+false, PULSE_RESOURCE_LEAK, no_bucket, SimpleLeak.java, SimpleLeak.testExceptionGetsFlagged_Not(boolean):void, 2
+false, PULSE_RESOURCE_LEAK, no_bucket, SimpleLeak.java, SimpleLeak.testExceptionGetsFlagged_Not(boolean):void, 12

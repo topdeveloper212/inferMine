@@ -1,0 +1,33 @@
+/* @generated */
+digraph cfg {
+"dealloc#NpeMallocC#[instance].5922928daff978d5_1" [label="1: Start NpeMallocC.dealloc\nFormals:  self:NpeMallocC*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#NpeMallocC#[instance].5922928daff978d5_1" -> "dealloc#NpeMallocC#[instance].5922928daff978d5_2" ;
+"dealloc#NpeMallocC#[instance].5922928daff978d5_2" [label="2: Exit NpeMallocC.dealloc \n  " color=yellow style=filled]
+	
+
+"test#NpeMallocC#[instance].cd48d629a7afde21_1" [label="1: Start NpeMallocC.test\nFormals:  self:NpeMallocC*\nLocals:  person:Person* \n  " color=yellow style=filled]
+	
+
+	 "test#NpeMallocC#[instance].cd48d629a7afde21_1" -> "test#NpeMallocC#[instance].cd48d629a7afde21_6" ;
+"test#NpeMallocC#[instance].cd48d629a7afde21_2" [label="2: Exit NpeMallocC.test \n  " color=yellow style=filled]
+	
+
+"test#NpeMallocC#[instance].cd48d629a7afde21_3" [label="3:  Return Stmt \n   n$0=*&person:Person* [line 25, column 10]\n " shape="box"]
+	
+
+	 "test#NpeMallocC#[instance].cd48d629a7afde21_3" -> "test#NpeMallocC#[instance].cd48d629a7afde21_4" ;
+"test#NpeMallocC#[instance].cd48d629a7afde21_4" [label="4:  Return Stmt \n   *&return:Person*=n$0 [line 25, column 3]\n " shape="box"]
+	
+
+	 "test#NpeMallocC#[instance].cd48d629a7afde21_4" -> "test#NpeMallocC#[instance].cd48d629a7afde21_2" ;
+"test#NpeMallocC#[instance].cd48d629a7afde21_5" [label="5:  BinaryOperatorStmt: Assign \n   n$1=*&person:Person* [line 24, column 3]\n  *n$1.x:int=10 [line 24, column 3]\n " shape="box"]
+	
+
+	 "test#NpeMallocC#[instance].cd48d629a7afde21_5" -> "test#NpeMallocC#[instance].cd48d629a7afde21_3" ;
+"test#NpeMallocC#[instance].cd48d629a7afde21_6" [label="6:  DeclStmt \n   VARIABLE_DECLARED(person:Person*); [line 23, column 3]\n  n$2=_fun_malloc_no_fail(sizeof(t=Person;nbytes=8;nullable=false):Person) [line 23, column 43]\n  *&person:Person*=n$2 [line 23, column 3]\n " shape="box"]
+	
+
+	 "test#NpeMallocC#[instance].cd48d629a7afde21_6" -> "test#NpeMallocC#[instance].cd48d629a7afde21_5" ;
+}

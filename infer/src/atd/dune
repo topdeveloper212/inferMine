@@ -1,0 +1,132 @@
+; Copyright (c) Facebook, Inc. and its affiliates.
+;
+; This source code is licensed under the MIT license found in the
+; LICENSE file in the root directory of this source tree.
+
+(library
+ (name ATDGenerated)
+ (public_name infer.ATDGenerated)
+ (flags
+  (:standard -w -27-32-34-35-39))
+ (libraries atd atdgen-runtime core)
+ (preprocess
+  (pps ppx_compare)))
+
+(documentation
+ (package infer)
+ (mld_files ATDGenerated))
+
+; Rules below are boilerplatey, but this is benign and very easy to
+; understand boilerplate.
+
+; ATD for jsonbug
+
+(rule
+ (targets jsonbug_j.ml jsonbug_j.mli)
+ (deps jsonbug.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -j -j-std %{deps})))
+
+(rule
+ (targets jsonbug_t.ml jsonbug_t.mli)
+ (deps jsonbug.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -t %{deps})))
+
+; ATD for jsoncost
+
+(rule
+ (targets jsoncost_j.ml jsoncost_j.mli)
+ (deps jsoncost.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -j -j-std %{deps})))
+
+(rule
+ (targets jsoncost_t.ml jsoncost_t.mli)
+ (deps jsoncost.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -t %{deps})))
+
+; ATD for jsonconfigimpact
+
+(rule
+ (targets jsonconfigimpact_j.ml jsonconfigimpact_j.mli)
+ (deps jsonconfigimpact.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -j -j-std %{deps})))
+
+(rule
+ (targets jsonconfigimpact_t.ml jsonconfigimpact_t.mli)
+ (deps jsonconfigimpact.atd)
+ (action
+  (run atdgen -open !AtdDeps -deriving-conv equal -t %{deps})))
+
+; ATD for sarif
+
+(rule
+ (targets sarifbug_j.ml sarifbug_j.mli)
+ (deps sarifbug.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets sarifbug_t.ml sarifbug_t.mli)
+ (deps sarifbug.atd)
+ (action
+  (run atdgen -t %{deps})))
+
+; ATD for runstate
+
+(rule
+ (targets runstate_j.ml runstate_j.mli)
+ (deps runstate.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets runstate_t.ml runstate_t.mli)
+ (deps runstate.atd)
+ (action
+  (run atdgen -t %{deps})))
+
+; ATD for config_impact_data
+
+(rule
+ (targets config_impact_data_j.ml config_impact_data_j.mli)
+ (deps config_impact_data.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets config_impact_data_t.ml config_impact_data_t.mli)
+ (deps config_impact_data.atd)
+ (action
+  (run atdgen -t %{deps})))
+
+; ATD for pulse_config
+
+(rule
+ (targets pulse_config_j.ml pulse_config_j.mli)
+ (deps pulse_config.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets pulse_config_t.ml pulse_config_t.mli)
+ (deps pulse_config.atd)
+ (action
+  (run atdgen -t %{deps})))
+
+; ATD for report_block_list_spec
+
+(rule
+ (targets report_block_list_spec_j.ml report_block_list_spec_j.mli)
+ (deps report_block_list_spec.atd)
+ (action
+  (run atdgen -j -j-std %{deps})))
+
+(rule
+ (targets report_block_list_spec_t.ml report_block_list_spec_t.mli)
+ (deps report_block_list_spec.atd)
+ (action
+  (run atdgen -t %{deps})))

@@ -1,0 +1,143 @@
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
+
+.source_language = "java"
+
+global I : int
+
+type node = { val: int; next: *node }
+
+declare cons(int, *node) : node
+
+define f(x: int, y: float, n: *node, a: *int[]) : void {
+  local z: int
+  #entry:
+    n0:int = load &y
+    n1:int = load &n[1]
+    n3:*int[] = load &a
+    n2 = f(3, 3.0, n1, n3)
+    jmp lab1
+    .handlers lab1, lab2
+  #lab1:
+    store &x <- n0:float
+    store &x[1] <- n1:float
+    store n3[1] <- n1:int
+    n4: *node = load &n
+    store n4.node.val <- n1:int
+    store n3.node.val <- n1:int
+    store n4.?.val <- n1:int
+    n5 = ?.cons(1, n3)
+    ret n2
+  #lab2:
+    store &z <- 1: int
+    store &u <- &z: *int
+    n0 = 1.0
+    jmp
+}
+
+define without_load_store_types(x: int, y: float, n: *node, a: *int[]) : void {
+  local z: int
+  #entry:
+    n0 = load &y
+    n1 = load &x
+    n2 = load &a
+    n3 = load &n
+    n7 = f(3, 3.0, n3, n2)
+    n70 = f(3, 3.0, n2, n3)
+    jmp lab1
+  #lab1:
+    store &y <- n0
+    store &y <- n1
+    store n2[1] <- n1
+    n8 = load n2[0]
+    store &y <- n8
+    store &x <- n8
+    n4 = load &n
+    store n4.node.val <- n1
+    store n3.node.val <- n1
+    store n4.?.val <- n1
+    store n3.node.val <- n2
+    n5 = ?.cons(1, n3)
+    ret n2
+}
+
+define unreachable_example(i: int) : void {
+  #entry:
+    n0: int = load &i
+    jmp then_node, else_node
+  #then_node:
+    prune __sil_lt(n0, 0)
+    ret null
+  #else_node:
+    prune ! __sil_lt(n0, 0)
+    n2 = n1
+    unreachable
+}
+
+define pointer_arithmetic_int_ptr_ok(ptr: *int): *int {
+  #entry:
+    ret __sil_pluspi(ptr, 4)
+}
+
+define pointer_arithmetic_float_ptr_bad(ptr: *int): *float {
+  #entry:
+    ret __sil_pluspi(ptr, 4)
+}
+
+
+define type_as_expr() : void {
+  #entry:
+    n0 = __sil_allocate_array(<node[]>, 10)
+    n1 = __sil_allocate(<node>)
+    n2 = __sil_cast(<node>, n1)
+    n3 = __sil_allocate_array(<node[][]>, 5, 3)
+    n4 = __sil_allocate(<node>, 3)
+    n5 = __sil_lazy_class_initialize(<node>)
+    n6 = __sil_lazy_class_initialize(0)
+    ret n2
+}
+
+declare A.throws(...) : void
+
+define call_throws() : void {
+  #entry:
+    n0 = A.throws()
+    ret null
+}
+
+define if_then_else(x: int, y: float) : void {
+  #entry:
+    n0: int = load &x
+    if n0 then ret null else jmp lab1
+  #lab1:
+    n1: float = load &y
+    if n1 then ret null else jmp lab2
+  #lab2:
+    if n0 && n1 then ret null else jmp lab3
+  #lab3:
+    if [&y] then ret null else jmp lab2
+}
+
+define use_mangled_names(): void {
+  #entry:
+    n0 = A::foo()
+    n1 = mixed:::bar()
+    n2 = A::mixed:::zoo()
+    ret null
+}
+
+declare A::foo() : void
+
+declare mixed:::bar() : void
+
+declare A::mixed:::zoo() : void
+
+type C<X,Y> = { }
+
+define A.f() : *C<A,A> {
+  #entry:
+    n0 = A.f()
+    ret null
+}

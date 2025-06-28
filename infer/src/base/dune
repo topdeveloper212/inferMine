@@ -1,0 +1,62 @@
+; Copyright (c) Facebook, Inc. and its affiliates.
+;
+; This source code is licensed under the MIT license found in the
+; LICENSE file in the root directory of this source tree.
+
+(ocamllex ToplLexer)
+
+(menhir
+ (explain true)
+ (flags --unused-token INDENT)
+ (modules ToplParser))
+
+(library
+ (name IBase)
+ (public_name infer.IBase)
+ (flags
+  (:standard
+   -open
+   Core
+   -open
+   IStdlib
+   -open
+   IStd
+   -open
+   ATDGenerated
+   -open
+   OpenSource
+   -open
+   Ppx_yojson_conv_lib.Yojson_conv.Primitives))
+ (libraries
+  cmdliner
+  core
+  bheap
+  memtrace
+  mtime.clock.os
+  parmap
+  ppx_show.runtime
+  sqlite3
+  tdigest
+  zip
+  ATDGenerated
+  IStdlib
+  OpenSource)
+ (preprocess
+  (pps
+   ppx_blob
+   ppx_compare
+   ppx_enumerate
+   ppx_fields_conv
+   ppx_hash
+   ppx_sexp_conv
+   ppx_show
+   ppx_variants_conv
+   ppx_yojson_conv
+   inferppx))
+ (preprocessor_deps
+  (glob_files ../../documentation/checkers/*.md)
+  (glob_files ../../documentation/issues/*.md)))
+
+(documentation
+ (package infer)
+ (mld_files IBase))

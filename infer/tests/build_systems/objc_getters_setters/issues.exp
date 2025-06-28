@@ -1,0 +1,5 @@
+build_systems/codetoanalyze/objc_getters_setters/B.m, B.npe_no_bad_footprint_in_getter:, 3, NULLPTR_DEREFERENCE, no_bucket, ERROR, [is assigned to the null pointer,assigned,invalid access occurs here]
+build_systems/codetoanalyze/objc_getters_setters/B.m, B.npe_no_bad_footprint_in_setter:andMetadata:, 3, NULLPTR_DEREFERENCE, no_bucket, ERROR, [is assigned to the null pointer,assigned,invalid access occurs here]
+build_systems/codetoanalyze/objc_getters_setters/B.m, B.npe_no_precondition_not_met:, 4, NULLPTR_DEREFERENCE, no_bucket, ERROR, [is assigned to the null pointer,assigned,invalid access occurs here]
+build_systems/codetoanalyze/objc_getters_setters/B.m, B.calling_method_with_block_parameters_sets_fields_correctly_FP, 5, NULLPTR_DEREFERENCE, no_bucket, ERROR, [is assigned to the null pointer,assigned,invalid access occurs here]
+build_systems/codetoanalyze/objc_getters_setters/B.m, B.calling_c_function_with_block_parameters_sets_fields_correctly_FP, 5, NULLPTR_DEREFERENCE, no_bucket, ERROR, [is assigned to the null pointer,assigned,invalid access occurs here]

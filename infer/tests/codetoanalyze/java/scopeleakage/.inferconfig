@@ -1,0 +1,48 @@
+{
+  "scope-leakage-config": {
+    "annot-classname" : "ScopeType",
+    "scopes": [
+      {
+        "classname": "Outer",
+        "generators": [
+          {
+            "classname": "OuterScope",
+            "methods": ["generate"]
+          }
+        ]
+      },
+      {
+        "classname": "Middle",
+        "generators": [
+          {
+            "classname": "MiddleScope",
+            "methods": ["getBox"]
+          }
+        ]
+      },
+      {
+        "classname": "Inner",
+        "generators": [
+          {
+            "classname": "InnerScope",
+            "methods": ["getBox"]
+          },
+          {
+            "return_types": ["ScopedClass"]
+          },
+          {
+            "classname_suffix": "Provider",
+            "methods": ["get"],
+            "scoped_parameter_types": ["ScopedClass"]
+          }
+        ]
+      }
+    ],
+    "must-not-hold": [
+      {"holds": "Outer", "held": "Middle"},
+      {"holds": "Outer", "held": "Inner"},
+      {"holds": "Middle", "held": "Inner"},
+      {"holds": "Inner", "held": "Middle"}
+    ]
+  }
+}

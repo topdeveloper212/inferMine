@@ -1,0 +1,85 @@
+/* @generated */
+digraph cfg {
+"objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_1" [label="1: Start objc_block_block_no_args.m:23\nFormals: \nLocals: \nCaptured:  [by value]&z:int \n  " color=yellow style=filled]
+	
+
+	 "objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_1" -> "objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_3" ;
+"objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_2" [label="2: Exit objc_block_block_no_args.m:23 \n  " color=yellow style=filled]
+	
+
+"objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_3" [label="3:  BinaryOperatorStmt: Assign \n   n$8=*&z:int [line 24, column 9]\n  *&#GB<codetoanalyze/objc/shared/block/block_no_args.m>$g:int=(n$8 + 3) [line 24, column 5]\n " shape="box"]
+	
+
+	 "objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_3" -> "objc_block_block_no_args.m:23_2ee.8e071046ccc36b64_2" ;
+"dealloc#Block_no_args#[instance].505e14ab24bbd202_1" [label="1: Start Block_no_args.dealloc\nFormals:  self:Block_no_args*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#Block_no_args#[instance].505e14ab24bbd202_1" -> "dealloc#Block_no_args#[instance].505e14ab24bbd202_2" ;
+"dealloc#Block_no_args#[instance].505e14ab24bbd202_2" [label="2: Exit Block_no_args.dealloc \n  " color=yellow style=filled]
+	
+
+"m#Block_no_args#[instance].e3d1ef26a8955830_1" [label="1: Start Block_no_args.m\nFormals:  self:Block_no_args*\nLocals:  p:int* z:int b:(_fn_ [] -> void)(*) \n  " color=yellow style=filled]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_1" -> "m#Block_no_args#[instance].e3d1ef26a8955830_16" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_2" [label="2: Exit Block_no_args.m \n  " color=yellow style=filled]
+	
+
+"m#Block_no_args#[instance].e3d1ef26a8955830_3" [label="3: + \n  " ]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_3" -> "m#Block_no_args#[instance].e3d1ef26a8955830_4" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_4" [label="4:  between_join_and_exit \n  " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_4" -> "m#Block_no_args#[instance].e3d1ef26a8955830_2" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_5" [label="5:  BinaryOperatorStmt: EQ \n   n$0=*&#GB<codetoanalyze/objc/shared/block/block_no_args.m>$g:int [line 28, column 7]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_5" -> "m#Block_no_args#[instance].e3d1ef26a8955830_6" ;
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_5" -> "m#Block_no_args#[instance].e3d1ef26a8955830_7" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_6" [label="6: Prune (true branch, if) \n   PRUNE((n$0 == 6), true); [line 28, column 7]\n " shape="invhouse"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_6" -> "m#Block_no_args#[instance].e3d1ef26a8955830_8" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_7" [label="7: Prune (false branch, if) \n   PRUNE(!(n$0 == 6), false); [line 28, column 7]\n " shape="invhouse"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_7" -> "m#Block_no_args#[instance].e3d1ef26a8955830_10" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_8" [label="8:  Return Stmt \n   n$1=*&p:int* [line 29, column 13]\n  n$2=*n$1:int [line 29, column 12]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_8" -> "m#Block_no_args#[instance].e3d1ef26a8955830_9" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_9" [label="9:  Return Stmt \n   *&return:int=n$2 [line 29, column 5]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_9" -> "m#Block_no_args#[instance].e3d1ef26a8955830_2" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_10" [label="10:  Return Stmt \n   n$3=*&z:int [line 31, column 12]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_10" -> "m#Block_no_args#[instance].e3d1ef26a8955830_11" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_11" [label="11:  Return Stmt \n   *&return:int=n$3 [line 31, column 5]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_11" -> "m#Block_no_args#[instance].e3d1ef26a8955830_2" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_12" [label="12:  DeclStmt \n   VARIABLE_DECLARED(p:int*); [line 27, column 3]\n  *&p:int*=null [line 27, column 3]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_12" -> "m#Block_no_args#[instance].e3d1ef26a8955830_5" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_13" [label="13:  Call n$5 \n   n$5=*&b:(_fn_ [] -> void)(*) [line 26, column 3]\n  n$6=_fun___call_objc_block(n$5:_fn_) objc_block [line 26, column 3]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_13" -> "m#Block_no_args#[instance].e3d1ef26a8955830_12" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_14" [label="14:  Compound statement \n   n$7=*&z:int [line 23, column 7]\n  *&b:(_fn_ [] -> void)(*)=(_fun_objc_block_block_no_args.m:23,([by value]n$7 &z:int)) [line 23, column 3]\n  n$9=*&b:(_fn_ [] -> void)(*) [line 23, column 3]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_14" -> "m#Block_no_args#[instance].e3d1ef26a8955830_13" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_15" [label="15:  DeclStmt \n   VARIABLE_DECLARED(z:int); [line 22, column 3]\n  *&z:int=3 [line 22, column 3]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_15" -> "m#Block_no_args#[instance].e3d1ef26a8955830_14" ;
+"m#Block_no_args#[instance].e3d1ef26a8955830_16" [label="16:  BinaryOperatorStmt: Assign \n   *&#GB<codetoanalyze/objc/shared/block/block_no_args.m>$g:int=7 [line 20, column 3]\n " shape="box"]
+	
+
+	 "m#Block_no_args#[instance].e3d1ef26a8955830_16" -> "m#Block_no_args#[instance].e3d1ef26a8955830_15" ;
+}

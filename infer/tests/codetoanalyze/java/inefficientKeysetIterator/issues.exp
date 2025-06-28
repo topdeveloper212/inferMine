@@ -1,0 +1,5 @@
+codetoanalyze/java/inefficientKeysetIterator/Test.java, Test.inefficient_loop_bad(java.util.HashMap):void, 2, INEFFICIENT_KEYSET_ITERATOR, no_bucket, WARNING, []
+codetoanalyze/java/inefficientKeysetIterator/Test.java, Test.inefficient_loop_itr_bad(java.util.HashMap):void, 5, INEFFICIENT_KEYSET_ITERATOR, no_bucket, WARNING, []
+codetoanalyze/java/inefficientKeysetIterator/Test.java, Test.inefficient_loop_itr_heur_bad(java.util.HashMap):void, 6, INEFFICIENT_KEYSET_ITERATOR, no_bucket, WARNING, []
+codetoanalyze/java/inefficientKeysetIterator/Test.java, Test.inefficient_loop_itr_heur_btw_bad(java.util.HashMap):void, 9, INEFFICIENT_KEYSET_ITERATOR, no_bucket, WARNING, []
+codetoanalyze/java/inefficientKeysetIterator/Test.java, Test.inefficient_arraymap_loop_bad(androidx.collection.ArrayMap):void, 2, INEFFICIENT_KEYSET_ITERATOR, no_bucket, WARNING, []

@@ -1,0 +1,10 @@
+/* @generated */
+digraph cfg {
+"dealloc#AClass#[instance].12f0e42f3ef799db_1" [label="1: Start AClass.dealloc\nFormals:  self:AClass*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#AClass#[instance].12f0e42f3ef799db_1" -> "dealloc#AClass#[instance].12f0e42f3ef799db_2" ;
+"dealloc#AClass#[instance].12f0e42f3ef799db_2" [label="2: Exit AClass.dealloc \n  " color=yellow style=filled]
+	
+
+}

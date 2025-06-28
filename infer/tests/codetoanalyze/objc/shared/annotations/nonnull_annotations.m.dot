@@ -1,0 +1,115 @@
+/* @generated */
+digraph cfg {
+"child#NonnullAnnot#[instance].cad0e87ab83fad49_1" [label="1: Start NonnullAnnot.child\nFormals:  self:NonnullAnnot*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "child#NonnullAnnot#[instance].cad0e87ab83fad49_1" -> "child#NonnullAnnot#[instance].cad0e87ab83fad49_3" ;
+"child#NonnullAnnot#[instance].cad0e87ab83fad49_2" [label="2: Exit NonnullAnnot.child \n  " color=yellow style=filled]
+	
+
+"child#NonnullAnnot#[instance].cad0e87ab83fad49_3" [label="3:  BinaryOperatorStmt: Node \n   n$0=*&self:NonnullAnnot* [line 11, column 25]\n  n$1=*n$0._child:NonnullAnnot* [line 11, column 25]\n  *&return:NonnullAnnot*=n$1 [line 11, column 25]\n " shape="box"]
+	
+
+	 "child#NonnullAnnot#[instance].cad0e87ab83fad49_3" -> "child#NonnullAnnot#[instance].cad0e87ab83fad49_2" ;
+"dealloc#NonnullAnnot#[instance].0d2074a7281416c0_1" [label="1: Start NonnullAnnot.dealloc\nFormals:  self:NonnullAnnot*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#NonnullAnnot#[instance].0d2074a7281416c0_1" -> "dealloc#NonnullAnnot#[instance].0d2074a7281416c0_2" ;
+"dealloc#NonnullAnnot#[instance].0d2074a7281416c0_2" [label="2: Exit NonnullAnnot.dealloc \n  " color=yellow style=filled]
+	
+
+"init#NonnullAnnot#[instance].297346e53db4e69b_1" [label="1: Start NonnullAnnot.init\nFormals:  self:NonnullAnnot*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "init#NonnullAnnot#[instance].297346e53db4e69b_1" -> "init#NonnullAnnot#[instance].297346e53db4e69b_3" ;
+"init#NonnullAnnot#[instance].297346e53db4e69b_2" [label="2: Exit NonnullAnnot.init \n  " color=yellow style=filled]
+	
+
+"init#NonnullAnnot#[instance].297346e53db4e69b_3" [label="3:  Return Stmt \n   n$0=*&self:NonnullAnnot* [line 20, column 10]\n " shape="box"]
+	
+
+	 "init#NonnullAnnot#[instance].297346e53db4e69b_3" -> "init#NonnullAnnot#[instance].297346e53db4e69b_4" ;
+"init#NonnullAnnot#[instance].297346e53db4e69b_4" [label="4:  Return Stmt \n   *&return:objc_object*=n$0 [line 20, column 3]\n " shape="box"]
+	
+
+	 "init#NonnullAnnot#[instance].297346e53db4e69b_4" -> "init#NonnullAnnot#[instance].297346e53db4e69b_2" ;
+"setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_1" [label="1: Start NonnullAnnot.setChild:\nFormals:  self:NonnullAnnot* child:NonnullAnnot*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_1" -> "setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_3" ;
+"setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_2" [label="2: Exit NonnullAnnot.setChild: \n  " color=yellow style=filled]
+	
+
+"setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_3" [label="3:  BinaryOperatorStmt: Node \n   n$0=*&self:NonnullAnnot* [line 11, column 25]\n  n$1=*&child:NonnullAnnot* [line 11, column 25]\n  *n$0._child:NonnullAnnot*=n$1 [line 11, column 25]\n " shape="box"]
+	
+
+	 "setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_3" -> "setChild:#NonnullAnnot(class Nonn.ce8a76b9fce6ea15_2" ;
+"test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_1" [label="1: Start NonnullAnnot.test1:\nFormals:  self:NonnullAnnot* a:NonnullAnnot*\nLocals:  aa:NonnullAnnot* \n  " color=yellow style=filled]
+	
+
+	 "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_1" -> "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_5" ;
+"test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_2" [label="2: Exit NonnullAnnot.test1: \n  " color=yellow style=filled]
+	
+
+"test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_3" [label="3:  Return Stmt \n   n$1=*&aa:NonnullAnnot* [line 25, column 10]\n  n$2=*n$1.x:int [line 25, column 10]\n " shape="box"]
+	
+
+	 "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_3" -> "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_4" ;
+"test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_4" [label="4:  Return Stmt \n   *&return:int=n$2 [line 25, column 3]\n " shape="box"]
+	
+
+	 "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_4" -> "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_2" ;
+"test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_5" [label="5:  DeclStmt \n   VARIABLE_DECLARED(aa:NonnullAnnot*); [line 24, column 3]\n  n$3=*&a:NonnullAnnot* [line 24, column 23]\n  n$4=_fun_NonnullAnnot.child(n$3:NonnullAnnot*) [line 24, column 22]\n  *&aa:NonnullAnnot*=n$4 [line 24, column 3]\n " shape="box"]
+	
+
+	 "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_5" -> "test1:#NonnullAnnot(class Nonnull.985a9c97633ffa1f_3" ;
+"test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_1" [label="1: Start NonnullAnnot.test2:\nFormals:  self:NonnullAnnot* <_Nonnull> a:NonnullAnnot*\nLocals:  aa:NonnullAnnot* \n  " color=yellow style=filled]
+	
+
+	 "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_1" -> "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_5" ;
+"test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_2" [label="2: Exit NonnullAnnot.test2: \n  " color=yellow style=filled]
+	
+
+"test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_3" [label="3:  Return Stmt \n   n$5=*&aa:NonnullAnnot* [line 30, column 10]\n  n$6=*n$5.x:int [line 30, column 10]\n " shape="box"]
+	
+
+	 "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_3" -> "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_4" ;
+"test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_4" [label="4:  Return Stmt \n   *&return:int=n$6 [line 30, column 3]\n " shape="box"]
+	
+
+	 "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_4" -> "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_2" ;
+"test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_5" [label="5:  DeclStmt \n   VARIABLE_DECLARED(aa:NonnullAnnot*); [line 29, column 3]\n  n$7=*&a:NonnullAnnot* [line 29, column 23]\n  n$8=_fun_NonnullAnnot.child(n$7:NonnullAnnot*) [line 29, column 22]\n  *&aa:NonnullAnnot*=n$8 [line 29, column 3]\n " shape="box"]
+	
+
+	 "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_5" -> "test2:#NonnullAnnot(class Nonnull.e479988e9efecc2c_3" ;
+"test3:#NonnullAnnot#[instance].0e0a10b544f9cece_1" [label="1: Start NonnullAnnot.test3:\nFormals:  self:NonnullAnnot* successBlock:(_fn_ [NSString*] -> void)(*)\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_1" -> "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_4" ;
+"test3:#NonnullAnnot#[instance].0e0a10b544f9cece_2" [label="2: Exit NonnullAnnot.test3: \n  " color=yellow style=filled]
+	
+
+"test3:#NonnullAnnot#[instance].0e0a10b544f9cece_3" [label="3:  Return Stmt \n   *&return:int=0 [line 35, column 3]\n " shape="box"]
+	
+
+	 "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_3" -> "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_2" ;
+"test3:#NonnullAnnot#[instance].0e0a10b544f9cece_4" [label="4:  Call n$9 \n   n$9=*&successBlock:(_fn_ [NSString*] -> void)(*) [line 34, column 3]\n  n$10=_fun_NSString.stringWithUTF8String:(\"Yay\":char* const ) [line 34, column 16]\n  n$11=_fun___call_objc_block(n$9:_fn_,n$10:NSString*) objc_block [line 34, column 3]\n " shape="box"]
+	
+
+	 "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_4" -> "test3:#NonnullAnnot#[instance].0e0a10b544f9cece_3" ;
+"test4:#NonnullAnnot#[instance].4dee71de0c7397a3_1" [label="1: Start NonnullAnnot.test4:\nFormals:  self:NonnullAnnot* <_Nonnull> successBlock:(_fn_ [NSString*] -> void)(*)\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_1" -> "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_4" ;
+"test4:#NonnullAnnot#[instance].4dee71de0c7397a3_2" [label="2: Exit NonnullAnnot.test4: \n  " color=yellow style=filled]
+	
+
+"test4:#NonnullAnnot#[instance].4dee71de0c7397a3_3" [label="3:  Return Stmt \n   *&return:int=0 [line 40, column 3]\n " shape="box"]
+	
+
+	 "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_3" -> "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_2" ;
+"test4:#NonnullAnnot#[instance].4dee71de0c7397a3_4" [label="4:  Call n$12 \n   n$12=*&successBlock:(_fn_ [NSString*] -> void)(*) [line 39, column 3]\n  n$13=_fun_NSString.stringWithUTF8String:(\"Yay\":char* const ) [line 39, column 16]\n  n$14=_fun___call_objc_block(n$12:_fn_,n$13:NSString*) objc_block [line 39, column 3]\n " shape="box"]
+	
+
+	 "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_4" -> "test4:#NonnullAnnot#[instance].4dee71de0c7397a3_3" ;
+}

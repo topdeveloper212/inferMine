@@ -1,0 +1,38 @@
+{
+  "scheduler": "callgraph",
+  "hack-models": [
+    "models/test_models.sil",
+    "models/test_models.hack"
+  ],
+  "hack-builder-patterns": [
+    {
+      "class": "TestBuilderBase",
+      "finalizers": [
+        "doFinalize",
+        "altFinalize"
+        ],
+      "receiver_finalizers": [
+        "finalizeViaTrait"
+      ],
+      "immediately_non_discardable_class": "MyImmediatelyDiscardableBuilder"
+      },
+    { "class": "MyBuilder",
+      "finalizers": [
+        "saveX"
+      ]
+    }
+  ],
+  "pulse-specialization-partial": true,
+  "pulse-taint-short-traces": true,
+  "pulse-taint-config": [
+    "taint_config.json"
+  ],
+  "pulse-transitive-access-config": [
+    "transitive-access-config.json",
+    "transitive-access-config-extra.json"
+  ],
+  "dict-missing-key-var-block-list": [
+    "^\\$args",
+    "block_listed_field"
+  ]
+}

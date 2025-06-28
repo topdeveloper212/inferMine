@@ -1,0 +1,119 @@
+(*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *)
+
+type json_trace_item = {
+  level : int;
+  filename : string;
+  line_number : int;
+  column_number : int;
+  description : string;
+}
+
+type loc = {
+  file: string;
+  lnum: int;
+  cnum: int;
+  enum: int;
+}
+
+type config_usage_extra = {
+  config_name: string;
+  function_name: string;
+  filename: string;
+  line_number: int;
+}
+
+type taint_extra = {
+  ?taint_source : string option;
+  ?taint_sink : string option;
+  ?taint_policy_privacy_effect : string option;
+  ?tainted_expression : string option;
+  ?report_as_issue_type: string option;
+  ?report_as_category: string option;
+}
+
+type transitive_callee_kind = [Static | Virtual | Closure]
+
+type transitive_callee_resolution = [ResolvedUsingDynamicType | ResolvedUsingStaticType | Unresolved]
+
+type transitive_callee = {
+  callsite_filename: string;
+  callsite_absolute_position_in_file: int;
+  caller_name: string;
+  callsite_relative_position_in_caller: int;
+  kind: transitive_callee_kind;
+  resolution: transitive_callee_resolution
+}
+
+type missed_capture = {
+  class_name: string;
+}
+
+type extra = {
+  ?cost_polynomial : string option;
+  ?cost_degree : int option;
+  ?copy_type : string option;
+  ?config_usage_extra : config_usage_extra option;
+  ?taint_extra : taint_extra option;
+  ~transitive_callees: transitive_callee list;
+  ~transitive_missed_captures: missed_capture list;
+}
+
+type additional_autofix = {
+  line: int;
+  column: int;
+  original: string;
+  replacement: string;
+}
+
+type autofix = {
+  ?original: string option;
+  ?replacement: string option;
+  ?additional: additional_autofix list option;
+}
+
+type transformation = {
+  column: int;
+  file: string;
+  line: int;
+  original: string;
+  replacement: string;
+}
+
+type autofixes = transformation list list
+
+type jsonbug = {
+  bug_type : string;
+  qualifier : string;
+  ?suggestion : string option;
+  severity : string;
+  category: string;
+  line: int;
+  column: int;
+  procedure : string;
+  procedure_start_line : int;
+  file : string;
+  bug_trace : json_trace_item list;
+  bug_trace_length : int;
+  bug_trace_max_depth : int;
+  key : string;
+  ?node_key : string option;
+  hash : string;
+  ?dotty : string option;
+  ?infer_source_loc: loc option;
+  bug_type_hum: string;
+  ?traceview_id: int option;
+  ?censored_reason : string option;
+  ?access : string option;
+  ?extras : extra option;
+  ?autofix: autofix option;
+  ?autofixes: autofixes option;
+  ?autofix_candidates: autofixes option;
+  ~suppressed: bool;
+}
+
+type report = jsonbug list

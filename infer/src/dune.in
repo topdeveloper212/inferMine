@@ -1,0 +1,129 @@
+(* -*- tuareg -*- *)
+(*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *)
+(* NOTE: prepend dune.common to this file! *)
+
+(*
+ * A known issue: At the moment of writing warning 14 (illegal backslash
+ * escape in string) does not manifest as an error, presumably due to
+ * peculiarities in communication between preprocessor and compiler.
+ * Still leave it for visibility and in hope that the issue will be
+ * fixed one day.
+ *)
+let fatal_warnings =
+  "+3+5+6+8+10+11+12+14+18+19+20+21+23+26+29+27+28+32+33+34+35+37+38+39+50+52+57+60"
+
+
+let warnings = fatal_warnings ^ "-4-9-40-41-42-45-48"
+
+let ocamlc_flags =
+  [ "-g"
+  ; "-short-paths"
+  ; "-safe-string"
+  ; "-principal"
+  ; "-strict-formats"
+  ; "-strict-sequence"
+  ; "-bin-annot"
+  ; "-alert"
+  ; "@tenv" ]
+
+
+let lenient_flags = ocamlc_flags @ ["-w"; warnings] |> String.concat " "
+
+let strict_flags =
+  ocamlc_flags @ ["-w"; warnings; "-warn-error"; fatal_warnings] |> String.concat " "
+
+
+(* OCaml 5.2 on macos with -O3 can lead to compilation failing
+   https://github.com/ocaml/ocaml/issues/13596 *)
+let ocamlopt_flags_val = if darwin then "(:standard -O2)" else "(:standard -O3)"
+
+let env_stanza =
+  Format.sprintf
+    {|
+(env
+  (dev
+    (flags %s)
+    (inline_tests enabled))
+  (opt
+    (flags %s)
+    (ocamlopt_flags %s))
+  (dev-noerror
+    (flags %s)
+    (inline_tests enabled))
+  )
+|}
+    strict_flags lenient_flags ocamlopt_flags_val lenient_flags
+
+
+(** Put this *first* in (libraries) specifications to prevent a clash between extlib's and base64's
+    versions of Base64. Only Javalib depends on extlib so do it conditionally to avoid introducing a
+    new dependency in the clang-only build. *)
+let extlib_if_java = if java then "extlib" else ""
+
+let verbose = match Sys.getenv_opt "VERBOSE" with Some "1" -> "-verbose" | _ -> ""
+
+let infer_exe_stanza =
+  Printf.sprintf
+    {|(executable
+ (name infer)
+ (modes byte_complete exe)
+ (modules Infer)
+ (flags (:standard
+     -open Core -open IStdlib -open IStd -open IBase -open IR -open Textuallib -open Backend -open Integration
+     -open ClangFrontend
+     %s -open JavaFrontend %s %s))
+ (libraries %s core pyml IStdlib IBase IR Textuallib Backend Integration ClangFrontend)
+ (link_flags %s)
+ (preprocess (pps ppx_compare))
+ (promote (until-clean) (into ../bin))
+     )|}
+    (if clang then "" else "-open ClangFrontendStubs")
+    (if java then "" else "-open JavaFrontendStubs")
+    verbose extlib_if_java platform_linking_flags
+
+
+let inferunit_stanza =
+  Printf.sprintf
+    {|(executable
+ (name inferunit)
+ (modes byte_complete exe)
+ (modules Inferunit)
+ (flags (:standard
+     -open Core -open IStdlib -open IStd -open IBase -open Backend -open Integration -open Textuallib
+     -open UnitTests -open ClangFrontend %s %s))
+ (libraries %s oUnit core IStdlib IBase Backend Integration UnitTests Textuallib %s)
+ (link_flags %s)
+ (preprocess (pps ppx_compare))
+ (promote (until-clean) (into ../bin))
+     )|}
+    (if clang then "-open ClangUnitTests" else "-open ClangFrontendStubs")
+    verbose extlib_if_java
+    (if clang then "ClangUnitTests" else "")
+    platform_linking_flags
+
+
+let infertop_stanza =
+  Format.sprintf
+    {|(executable
+ (name infertop)
+ (modes byte_complete)
+ (modules Infertop)
+ (flags (:standard -open Core -open IStdlib -open IStd -open Textuallib %s))
+ (libraries %s utop Absint ATDGenerated Backend IBase BO Checkers Concurrency Costlib IR Textuallib IStdlib Labs Pulselib PythonFrontend Integration Topllib UnitTests)
+ (link_flags (-linkall -warn-error -31))
+ (preprocess (pps ppx_compare))
+ (promote (until-clean) (into ../bin))
+     )|}
+    verbose extlib_if_java
+
+
+(** The build stanzas to be passed to dune *)
+let stanzas = [env_stanza; infer_exe_stanza; inferunit_stanza; infertop_stanza]
+;;
+
+Jbuild_plugin.V1.send (String.concat "\n" stanzas)

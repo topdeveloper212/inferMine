@@ -1,0 +1,76 @@
+/* @generated */
+digraph cfg {
+"dealloc#Bicycle#[instance].cc3d2713c65a7cba_1" [label="1: Start Bicycle.dealloc\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "dealloc#Bicycle#[instance].cc3d2713c65a7cba_1" -> "dealloc#Bicycle#[instance].cc3d2713c65a7cba_2" ;
+"dealloc#Bicycle#[instance].cc3d2713c65a7cba_2" [label="2: Exit Bicycle.dealloc \n  " color=yellow style=filled]
+	
+
+"lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_1" [label="1: Start Bicycle.lockToStructure:\nFormals:  self:Bicycle* theStructure:objc_object*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_1" -> "lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_3" ;
+"lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_2" [label="2: Exit Bicycle.lockToStructure: \n  " color=yellow style=filled]
+	
+
+"lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_3" [label="3:  Call _fun_NSLog \n   n$10=_fun_NSString.stringWithUTF8String:(\"Locked to structure. Don't forget the combination!\":char* const ) [line 31, column 9]\n  n$11=_fun_NSLog(n$10:NSString*) [line 31, column 3]\n " shape="box"]
+	
+
+	 "lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_3" -> "lockToStructure:#Bicycle(struct o.b90c26b19ecaf5fc_2" ;
+"removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_1" [label="1: Start Bicycle.removeFrontWheel\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_1" -> "removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_3" ;
+"removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_2" [label="2: Exit Bicycle.removeFrontWheel \n  " color=yellow style=filled]
+	
+
+"removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_3" [label="3:  Call _fun_NSLog \n   n$8=_fun_NSString.stringWithUTF8String:(\"Front wheel is off.Should probably replace that before pedaling...\":char* const ) [line 27, column 7]\n  n$9=_fun_NSLog(n$8:NSString*) [line 26, column 3]\n " shape="box"]
+	
+
+	 "removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_3" -> "removeFrontWheel#Bicycle#[instanc.d5f0a1bcc3efe35a_2" ;
+"signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_1" [label="1: Start Bicycle.signalLeftTurn\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_1" -> "signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_3" ;
+"signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_2" [label="2: Exit Bicycle.signalLeftTurn \n  " color=yellow style=filled]
+	
+
+"signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_3" [label="3:  Call _fun_NSLog \n   n$2=_fun_NSString.stringWithUTF8String:(\"Extending left arm outwards\":char* const ) [line 17, column 9]\n  n$3=_fun_NSLog(n$2:NSString*) [line 17, column 3]\n " shape="box"]
+	
+
+	 "signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_3" -> "signalLeftTurn#Bicycle#[instance].18daf4924e1c1900_2" ;
+"signalRightTurn#Bicycle#[instance.0785da432422f937_1" [label="1: Start Bicycle.signalRightTurn\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "signalRightTurn#Bicycle#[instance.0785da432422f937_1" -> "signalRightTurn#Bicycle#[instance.0785da432422f937_3" ;
+"signalRightTurn#Bicycle#[instance.0785da432422f937_2" [label="2: Exit Bicycle.signalRightTurn \n  " color=yellow style=filled]
+	
+
+"signalRightTurn#Bicycle#[instance.0785da432422f937_3" [label="3:  Call _fun_NSLog \n   n$4=_fun_NSString.stringWithUTF8String:(\"Bending left arm upwards\":char* const ) [line 20, column 9]\n  n$5=_fun_NSLog(n$4:NSString*) [line 20, column 3]\n " shape="box"]
+	
+
+	 "signalRightTurn#Bicycle#[instance.0785da432422f937_3" -> "signalRightTurn#Bicycle#[instance.0785da432422f937_2" ;
+"signalStop#Bicycle#[instance].812712e2bf530f0e_1" [label="1: Start Bicycle.signalStop\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "signalStop#Bicycle#[instance].812712e2bf530f0e_1" -> "signalStop#Bicycle#[instance].812712e2bf530f0e_3" ;
+"signalStop#Bicycle#[instance].812712e2bf530f0e_2" [label="2: Exit Bicycle.signalStop \n  " color=yellow style=filled]
+	
+
+"signalStop#Bicycle#[instance].812712e2bf530f0e_3" [label="3:  Call _fun_NSLog \n   n$0=_fun_NSString.stringWithUTF8String:(\"Bending left arm downwards\":char* const ) [line 14, column 9]\n  n$1=_fun_NSLog(n$0:NSString*) [line 14, column 3]\n " shape="box"]
+	
+
+	 "signalStop#Bicycle#[instance].812712e2bf530f0e_3" -> "signalStop#Bicycle#[instance].812712e2bf530f0e_2" ;
+"startPedaling#Bicycle#[instance].8d631ff3051a105b_1" [label="1: Start Bicycle.startPedaling\nFormals:  self:Bicycle*\nLocals:  \n  " color=yellow style=filled]
+	
+
+	 "startPedaling#Bicycle#[instance].8d631ff3051a105b_1" -> "startPedaling#Bicycle#[instance].8d631ff3051a105b_3" ;
+"startPedaling#Bicycle#[instance].8d631ff3051a105b_2" [label="2: Exit Bicycle.startPedaling \n  " color=yellow style=filled]
+	
+
+"startPedaling#Bicycle#[instance].8d631ff3051a105b_3" [label="3:  Call _fun_NSLog \n   n$6=_fun_NSString.stringWithUTF8String:(\"Here we go!\":char* const ) [line 23, column 9]\n  n$7=_fun_NSLog(n$6:NSString*) [line 23, column 3]\n " shape="box"]
+	
+
+	 "startPedaling#Bicycle#[instance].8d631ff3051a105b_3" -> "startPedaling#Bicycle#[instance].8d631ff3051a105b_2" ;
+}

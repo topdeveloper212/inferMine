@@ -1,0 +1,447 @@
+// 
+// Copyright (c) Facebook, Inc. and its affiliates.
+//
+// This source code is licensed under the MIT license found in the
+// LICENSE file in the root directory of this source tree.
+
+.source_language = "Swift" @?
+
+define .plain_name = "set_spouses" $s5Hello11set_spousesyyAA6PersonC_ADtF(var0: *ptr_elt, var1: *ptr_elt) : *ptr_elt {
+  local john: *ptr_elt, jane: *ptr_elt
+  #: @[46:0]
+      n1 = load &var0 @[46:0]
+      store &john <- n1 @[46:0]
+      n2 = load &var1 @[46:0]
+      store &jane <- n2 @[46:0]
+      n3 = load &var1 @[47:19]
+      n4 = n3 @[47:19]
+      jmp 5::ret @[47:19]
+      
+  #5::ret: @[47:17]
+      n5 = load &var0 @[47:17]
+      n6 = load __sil_pluspi(n5, __sil_mult_int(8, 13)) @[47:17]
+      n7 = load &var1 @[47:17]
+      n8 = load &var0 @[47:17]
+      _ = $builtins.llvm_dynamic_call(n6, n7, n8) @[47:17]
+      jmp 8::void::ret @[47:17]
+      
+  #8::void::ret: @[49:1]
+      ret null @[49:1]
+      
+} @?
+
+define .plain_name = "createPerson" $s5Hello12createPerson3age6heightSiAC_SiADtSi_SitF(var0: int, var1: int) : *__infer_tuple_class<int,int> {
+  local height: int, age: int
+  #: @[18:0]
+      n1 = load &var0 @[18:0]
+      store &age <- n1 @[18:0]
+      n2 = load &var1 @[18:0]
+      store &height <- n2 @[18:0]
+      n3 = $builtins.llvm_init_tuple() @[18:0]
+      n4 = load &var0 @[19:5]
+      store n3.__infer_tuple_class<int,int>.__infer_tuple_field_0 <- n4 @[19:5]
+      n5 = load &var1 @[19:5]
+      store n3.__infer_tuple_class<int,int>.__infer_tuple_field_1 <- n5 @[19:5]
+      ret n3 @[19:5]
+      
+} @?
+
+define .plain_name = "test_retain_cycle" $s5Hello17test_retain_cycleyyF() : *ptr_elt {
+  local john: *ptr_elt, jane: *ptr_elt
+  #: @[52:16]
+      n1 = $s5Hello6PersonCMa(0) @[52:16]
+      jmp 3::ret @[52:16]
+      
+  #$s5Hello11set_spousesyyAA6PersonC_ADtF::void::ret: @[55:1]
+      ret null @[55:1]
+      
+  #3::ret: @[52:16]
+      n2 = load n1.swift::metadata_response.field_0 @[52:16]
+      n4 = $s5Hello6PersonC3ageACSi_tcfC(30, n2) @[52:16]
+      jmp 5::ret @[52:16]
+      
+  #5::ret: @[51:0]
+      store &john <- n4 @[51:0]
+      n5 = $s5Hello6PersonC3ageACSi_tcfC(35, n2) @[53:16]
+      jmp 6::ret @[53:16]
+      
+  #6::ret: @[51:0]
+      store &jane <- n5 @[51:0]
+      _ = $s5Hello11set_spousesyyAA6PersonC_ADtF(n4, n5) @[54:5]
+      jmp $s5Hello11set_spousesyyAA6PersonC_ADtF::void::ret @[54:5]
+      
+} @?
+
+define .plain_name = "test1" $s5Hello5test1yS2i_SitF(var0: int, var1: int) : int {
+  local n2: int, n: int
+  #: @[6:0]
+      n1 = load &var0 @[6:0]
+      store &n <- n1 @[6:0]
+      n2 = load &var1 @[6:0]
+      store &n2 <- n2 @[6:0]
+      n3 = load &var0 @[7:5]
+      ret n3 @[7:5]
+      
+} @?
+
+define .plain_name = "test2" $s5Hello5test2SiyF() : int {
+  #: @[11:12]
+      n1 = $s5Hello9returnOneSiyF() @[11:12]
+      jmp 1::ret @[11:12]
+      
+  #1::ret: @[11:5]
+      ret n1 @[11:5]
+      
+} @?
+
+define .plain_name = "test3" $s5Hello5test3yS2i_SitF(var0: int, var1: int) : int {
+  local n2: int, n: int
+  #: @[14:0]
+      n1 = load &var0 @[14:0]
+      store &n <- n1 @[14:0]
+      n2 = load &var1 @[14:0]
+      store &n2 <- n2 @[14:0]
+      n3 = load &var0 @[15:12]
+      n4 = load &var1 @[15:12]
+      n5 = $s5Hello5test1yS2i_SitF(n3, n4) @[15:12]
+      jmp 5::ret @[15:12]
+      
+  #5::ret: @[15:5]
+      ret n5 @[15:5]
+      
+} @?
+
+define .plain_name = "test4" $s5Hello5test4SiyF() : int {
+  local person: *__infer_tuple_class<*TSi,*TSi>
+  #: @[23:18]
+      n1 = $s5Hello12createPerson3age6heightSiAC_SiADtSi_SitF(30, 180) @[23:18]
+      jmp 2::ret @[23:18]
+      
+  #2::ret: @[23:18]
+      n2 = load n1.__infer_tuple_class<int,int>.__infer_tuple_field_0 @[23:18]
+      n4 = load &person @[22:0]
+      n5 = load n4.__infer_tuple_class<*TSi,*TSi>.__infer_tuple_field_0 @[22:0]
+      store n5.TSi.field_0 <- n2 @[22:0]
+      n6 = load &person @[22:0]
+      n7 = load n6.__infer_tuple_class<*TSi,*TSi>.__infer_tuple_field_1 @[22:0]
+      store n7.TSi.field_0 <- n1.__infer_tuple_class<int,int>.__infer_tuple_field_1 @[22:0]
+      ret n2 @[24:5]
+      
+} @?
+
+define .plain_name = "test6" $s5Hello5test6AA6PersonCyF() : *ptr_elt {
+  #: @[43:12]
+      n1 = $s5Hello6PersonCMa(0) @[43:12]
+      jmp 1::ret @[43:12]
+      
+  #1::ret: @[43:12]
+      n2 = load n1.swift::metadata_response.field_0 @[43:12]
+      n3 = $s5Hello6PersonC3ageACSi_tcfC(30, n2) @[43:12]
+      jmp 3::ret @[43:12]
+      
+  #3::ret: @[43:5]
+      ret n3 @[43:5]
+      
+} @?
+
+define .plain_name = "init" $s5Hello6PersonC3ageACSi_tcfC(var0: int, var1: *ptr_elt) : *ptr_elt {
+  #: @[36:0]
+      n1 = load &var1 @[36:0]
+      n2 = swift_allocObject(n1, 32, 7) @[36:0]
+      jmp 3::ret @[36:0]
+      
+  #3::ret: @[36:0]
+      n3 = load &var0 @[36:0]
+      n4 = $s5Hello6PersonC3ageACSi_tcfc(n3, n2) @[36:0]
+      jmp 4::ret @[36:0]
+      
+  #4::ret: @[36:0]
+      ret n4 @[36:0]
+      
+} @?
+
+define .plain_name = "init" $s5Hello6PersonC3ageACSi_tcfc(var0: int, var1: *ptr_elt) : *ptr_elt {
+  local self: *ptr_elt, age: int
+  #: @[36:0]
+      n1 = load &var0 @[36:0]
+      store &age <- n1 @[36:0]
+      n2 = load &var1 @[36:0]
+      store &self <- n2 @[36:0]
+      n3 = load &var1 @[37:18]
+      n4 = load n3.T5Hello6PersonC.field_1 @[37:18]
+      n1 = load &var0 @[37:18]
+      store n4.TSi.field_0 <- n1 @[37:18]
+      n5 = $s5Hello6PersonCMa(0) @[38:23]
+      jmp 7::ret @[38:23]
+      
+  #7::ret: @[38:23]
+      n6 = load n5.swift::metadata_response.field_0 @[38:23]
+      n7 = $s5Hello6PersonC3ageACSi_tcfC(0, n6) @[38:23]
+      jmp 9::ret @[38:23]
+      
+  #9::ret: @[38:21]
+      n8 = load &var1 @[38:21]
+      store n8.T5Hello6PersonC.field_2 <- n7 @[38:21]
+      n9 = load &var1 @[39:5]
+      ret n9 @[39:5]
+      
+} @?
+
+define .plain_name = "age.get" $s5Hello6PersonC3ageSivg(var0: *ptr_elt) : int {
+  #: @[0:0]
+      n1 = load n3.TSi.field_0 @[0:0]
+      n2 = load &var0 @[0:0]
+      n3 = load n2.T5Hello6PersonC.field_1 @[0:0]
+      ret n1 @[0:0]
+      
+} @?
+
+declare .plain_name = "spouse.modify" $s5Hello6PersonC6spouseACvM(*ptr_elt, *ptr_elt) : *ptr_elt
+
+declare .plain_name = "spouse.modify" $s5Hello6PersonC6spouseACvM::resume::0(*ptr_elt, int) : *ptr_elt
+
+define .plain_name = "spouse.get" $s5Hello6PersonC6spouseACvg(var0: *ptr_elt) : *ptr_elt {
+  local var2: int[]
+  #: @[0:0]
+      n2 = load &var0 @[0:0]
+      n1 = load n2.T5Hello6PersonC.field_2 @[0:0]
+      n4 = load n1 @[0:0]
+      n5 = n4 @[0:0]
+      jmp 5::ret @[0:0]
+      
+  #5::ret: @[0:0]
+      ret n4 @[0:0]
+      
+} @?
+
+define .plain_name = "spouse.set" $s5Hello6PersonC6spouseACvs(var0: *ptr_elt, var1: *ptr_elt) : *ptr_elt {
+  local var3: int[]
+  #: @[0:0]
+      n1 = load &var0 @[0:0]
+      n2 = n1 @[0:0]
+      jmp 4::ret @[0:0]
+      
+  #4::ret: @[0:0]
+      n4 = load &var1 @[0:0]
+      n3 = load n4.T5Hello6PersonC.field_2 @[0:0]
+      n6 = load n3 @[0:0]
+      n7 = load &var0 @[0:0]
+      store n3 <- n7 @[0:0]
+      ret null @[0:0]
+      
+} @?
+
+declare $s5Hello6PersonCMa(int) : *ptr_elt
+
+declare .plain_name = "deinit" $s5Hello6PersonCfD(*ptr_elt) : *ptr_elt
+
+declare .plain_name = "deinit" $s5Hello6PersonCfd(*ptr_elt) : *ptr_elt
+
+define .plain_name = "test5_fp" $s5Hello8test5_fpyyF() : *ptr_elt {
+  local person_age: int
+  #: @[28:22]
+      n1 = $s5Hello5test4SiyF() @[28:22]
+      jmp 2::ret @[28:22]
+      
+  #$ss17_assertionFailure__4file4line5flagss5NeverOs12StaticStringV_SSAHSus6UInt32VtF::void::ret: @[27:0]
+      unreachable @[27:0]
+      
+  #2::ret: @[30:5]
+      n2 = __sil_eq(n1, 30) @[30:5]
+      if n2 then jmp 9 else jmp 5 @[30:5]
+      
+  #5: @[30:5]
+      n3 = $ss6assert__4file4lineySbyXK_SSyXKs12StaticStringVSutFfA0_SSycfu_() @[30:5]
+      jmp 6::ret @[30:5]
+      
+  #6::ret: @[30:5]
+      _ = __sil_assert_fail(null) @[30:5]
+      jmp $ss17_assertionFailure__4file4line5flagss5NeverOs12StaticStringV_SSAHSus6UInt32VtF::void::ret @[30:5]
+      
+  #9: @[31:1]
+      ret null @[31:1]
+      
+} @?
+
+define .plain_name = "returnOne" $s5Hello9returnOneSiyF() : int {
+  #: @[3:5]
+      ret 1 @[3:5]
+      
+} @?
+
+declare $ss17_assertionFailure__4file4line5flagss5NeverOs12StaticStringV_SSAHSus6UInt32VtF(int, int, int, int, *ptr_elt, int, int, int, int, int) : *ptr_elt
+
+declare $ss6assert__4file4lineySbyXK_SSyXKs12StaticStringVSutFfA0_SSycfu_() : *ptr_elt
+
+declare _swift_FORCE_LOAD_$_swiftCompatibility56() : *ptr_elt
+
+declare objc_opt_self(*ptr_elt) : *ptr_elt
+
+declare swift_allocObject(*ptr_elt, int, int) : *ptr_elt
+
+declare swift_beginAccess(*ptr_elt, *ptr_elt, int, *ptr_elt) : *ptr_elt
+
+declare swift_bridgeObjectRetain(*ptr_elt) : *ptr_elt
+
+declare swift_deallocClassInstance(*ptr_elt, int, int) : *ptr_elt
+
+declare swift_endAccess(*ptr_elt) : *ptr_elt
+
+declare swift_release(*ptr_elt) : *ptr_elt
+
+declare swift_retain(*ptr_elt) : *ptr_elt
+
+global symbolic _____ 5Hello6PersonC: *ptr_elt
+
+global symbolic Si: *ptr_elt
+
+global objc_classes_$s5Hello6PersonCN: *ptr_elt
+
+global llvm::used: *ptr_elt
+
+global llvm::compiler::used: *ptr_elt
+
+global _swift_FORCE_LOAD_$_swiftCompatibility56_$_Hello: *ptr_elt
+
+global _objc_empty_cache: *ptr_elt
+
+global __swift_reflection_version: *ptr_elt
+
+global _METACLASS_DATA__TtC5Hello6Person: *ptr_elt
+
+global _IVARS__TtC5Hello6Person: *ptr_elt
+
+global _DATA__TtC5Hello6Person: *ptr_elt
+
+global OBJC_METACLASS_$__TtCs12_SwiftObject: *ptr_elt
+
+global OBJC_CLASS_$__TtCs12_SwiftObject: *ptr_elt
+
+global ::str::6::spouse: *ptr_elt
+
+global ::str::6::Person: *ptr_elt
+
+global ::str::5::Hello: *ptr_elt
+
+global ::str::3::age: *ptr_elt
+
+global ::str::17::_TtC5Hello6Person: *ptr_elt
+
+global ::str::16::Hello/base::swift: *ptr_elt
+
+global ::str::16::Assertion failed: *ptr_elt
+
+global ::str::0::: *ptr_elt
+
+global 1: *ptr_elt
+
+global 0: *ptr_elt
+
+global $sBoWV: *ptr_elt
+
+global $s5HelloMXM: *ptr_elt
+
+global $s5Hello6PersonCMn: *ptr_elt
+
+global $s5Hello6PersonCMm: *ptr_elt
+
+global $s5Hello6PersonCMf: *ptr_elt
+
+global $s5Hello6PersonCMF: *ptr_elt
+
+global $s5Hello6PersonCHn: *ptr_elt
+
+global $s5Hello6PersonC6spouseACvpWvd: *ptr_elt
+
+global $s5Hello6PersonC3ageSivpWvd: *ptr_elt
+
+type $s5Hello6PersonC6spouseACvM::Frame = {field_0: int[]}
+
+type T5Hello6PersonC = {field_0: *swift::refcounted; field_1: *TSi;
+                        field_2: *ptr_elt}
+
+type TSi = {field_0: int}
+
+type __infer_tuple_class<*TSi,*TSi> = {__infer_tuple_field_0: *TSi;
+                                       __infer_tuple_field_1: *TSi}
+
+type __infer_tuple_class<*ptr_elt,*ptr_elt> = {__infer_tuple_field_0: *ptr_elt;
+                                               __infer_tuple_field_1: *ptr_elt}
+
+type __infer_tuple_class<*ptr_elt,*ptr_elt,*ptr_elt,int,*ptr_elt,*ptr_elt,*ptr_elt,int,int,int,int,int,int,int,int,*ptr_elt,*ptr_elt,int,int,*ptr_elt,*ptr_elt,*ptr_elt,*ptr_elt> = {
+__infer_tuple_field_0: *ptr_elt; __infer_tuple_field_1: *ptr_elt;
+__infer_tuple_field_2: *ptr_elt; __infer_tuple_field_3: int;
+__infer_tuple_field_4: *ptr_elt; __infer_tuple_field_5: *ptr_elt;
+__infer_tuple_field_6: *ptr_elt; __infer_tuple_field_7: int;
+__infer_tuple_field_8: int; __infer_tuple_field_9: int;
+__infer_tuple_field_10: int; __infer_tuple_field_11: int;
+__infer_tuple_field_12: int; __infer_tuple_field_13: int;
+__infer_tuple_field_14: int; __infer_tuple_field_15: *ptr_elt;
+__infer_tuple_field_16: *ptr_elt; __infer_tuple_field_17: int;
+__infer_tuple_field_18: int; __infer_tuple_field_19: *ptr_elt;
+__infer_tuple_field_20: *ptr_elt; __infer_tuple_field_21: *ptr_elt;
+__infer_tuple_field_22: *ptr_elt}
+
+type __infer_tuple_class<*ptr_elt,*ptr_elt,*ptr_elt,int,int> = {__infer_tuple_field_0: *ptr_elt;
+                                                                __infer_tuple_field_1: *ptr_elt;
+                                                                __infer_tuple_field_2: *ptr_elt;
+                                                                __infer_tuple_field_3: int;
+                                                                __infer_tuple_field_4: int}
+
+type __infer_tuple_class<int,*ptr_elt> = {__infer_tuple_field_0: int;
+                                          __infer_tuple_field_1: *ptr_elt}
+
+type __infer_tuple_class<int,int> = {__infer_tuple_field_0: int;
+                                     __infer_tuple_field_1: int}
+
+type __infer_tuple_class<int,int,(*__infer_tuple_class<*ptr_elt,*ptr_elt,*ptr_elt,int,int>)[]> = {
+__infer_tuple_field_0: int; __infer_tuple_field_1: int;
+__infer_tuple_field_2: (*__infer_tuple_class<*ptr_elt,*ptr_elt,*ptr_elt,int,int>)[]}
+
+type __infer_tuple_class<int,int,int> = {__infer_tuple_field_0: int;
+                                         __infer_tuple_field_1: int;
+                                         __infer_tuple_field_2: int}
+
+type __infer_tuple_class<int,int,int,int,*ptr_elt,*ptr_elt,*ptr_elt,*ptr_elt,*ptr_elt,*ptr_elt,*ptr_elt> = {
+__infer_tuple_field_0: int; __infer_tuple_field_1: int;
+__infer_tuple_field_2: int; __infer_tuple_field_3: int;
+__infer_tuple_field_4: *ptr_elt; __infer_tuple_field_5: *ptr_elt;
+__infer_tuple_field_6: *ptr_elt; __infer_tuple_field_7: *ptr_elt;
+__infer_tuple_field_8: *ptr_elt; __infer_tuple_field_9: *ptr_elt;
+__infer_tuple_field_10: *ptr_elt}
+
+type __infer_tuple_class<int,int,int,int,int,int,int,int,int,int,int> = {
+__infer_tuple_field_0: int; __infer_tuple_field_1: int;
+__infer_tuple_field_2: int; __infer_tuple_field_3: int;
+__infer_tuple_field_4: int; __infer_tuple_field_5: int;
+__infer_tuple_field_6: int; __infer_tuple_field_7: int;
+__infer_tuple_field_8: int; __infer_tuple_field_9: int;
+__infer_tuple_field_10: int}
+
+type __infer_tuple_class<int,int,int,int,int,int,int,int,int,int,int,int,int,*swift::method_descriptor,*swift::method_descriptor,*swift::method_descriptor,*swift::method_descriptor> = {
+__infer_tuple_field_0: int; __infer_tuple_field_1: int;
+__infer_tuple_field_2: int; __infer_tuple_field_3: int;
+__infer_tuple_field_4: int; __infer_tuple_field_5: int;
+__infer_tuple_field_6: int; __infer_tuple_field_7: int;
+__infer_tuple_field_8: int; __infer_tuple_field_9: int;
+__infer_tuple_field_10: int; __infer_tuple_field_11: int;
+__infer_tuple_field_12: int;
+__infer_tuple_field_13: *swift::method_descriptor;
+__infer_tuple_field_14: *swift::method_descriptor;
+__infer_tuple_field_15: *swift::method_descriptor;
+__infer_tuple_field_16: *swift::method_descriptor}
+
+type __infer_tuple_class<int[],int> = {__infer_tuple_field_0: int[];
+                                       __infer_tuple_field_1: int}
+
+type objc_class = {field_0: *ptr_elt; field_1: *ptr_elt; field_2: *ptr_elt;
+                   field_3: *ptr_elt; field_4: int}
+
+type swift::metadata_response = {field_0: *ptr_elt; field_1: int}
+
+type swift::method_descriptor = {field_0: int; field_1: int}
+
+type swift::refcounted = {field_0: *ptr_elt; field_1: int}
+
+type swift::type_metadata_record = {field_0: int}
+

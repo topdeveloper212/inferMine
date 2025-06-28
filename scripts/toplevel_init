@@ -1,0 +1,44 @@
+(* to be used with infertop, infer's custom toplevel *)
+
+(* load dependencies *)
+#use "topfind";;
+#thread;;
+#require "ANSITerminal";;
+#require "atdgen";;
+#require "bheap";;
+#require "cmdliner";;
+#require "core.top";;
+#require "ctypes";;
+#require "ctypes.stubs";;
+#require "ocamlgraph";;
+#require "ppx_compare";;
+#require "ppx_fields_conv";;
+#require "re";;
+#require "sawja";;
+#require "sqlite3";;
+#require "xmlm";;
+
+open IStdlib;;
+open ATDGenerated;;
+open IBase;;
+open IR;;
+open Absint;;
+open BO;;
+open Pulselib;;
+open Checkers;;
+open Costlib;;
+open Topllib;;
+open Concurrency;;
+open Labs;;
+open OpenSource;;
+open Backend;;
+open JavaFrontend;;
+open ClangFrontend;;
+open Integration;;
+
+(* Most of infer uses this, useful for copy/pasting. Can be (partially) countered by typing `open
+Caml.Pervasives`. *)
+open IStd;;
+
+module L = Logging;;
+module F = Format;;

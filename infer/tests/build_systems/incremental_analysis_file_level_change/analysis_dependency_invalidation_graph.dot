@@ -1,0 +1,17 @@
+
+digraph callgraph {
+  N1 [ label = "b\nflag=false" ];
+  N1 -> N2 ;
+
+  N0 [ label = "a\nflag=false" ];
+  N0 -> N1 ;
+
+  N4 [ label = "main\nflag=true" ];
+
+  N2 [ label = "c\nflag=false" ];
+  N2 -> N4 ;
+
+  N3 [ label = "meaning_of_life\nflag=false" ];
+  N3 -> N4 ;
+
+}

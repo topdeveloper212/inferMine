@@ -1,0 +1,31 @@
+{
+  "pulse-taint-policies": [
+    { "short_description": "Simple Test",
+      "taint_flows": [
+        { "source_kinds": ["SimpleSource"],
+          "sink_kinds": ["SimpleSink"]
+        }
+      ]
+    }
+  ],
+  "pulse-taint-sources": [
+    { "block_passed_to": "InferTaint.callBlockUnknown:",
+      "kinds": ["SimpleSource"],
+      "taint_target": ["ArgumentPositions", [0]]
+    },
+    { "procedure": "my_source",
+    "taint_target": ["ArgumentPositions", [0]],
+    "kinds": ["SimpleSource"]
+  }
+  ],
+  "pulse-taint-sinks": [
+    { "class_names": ["InferTaint"],
+      "method_names": ["sink:"],
+      "kinds": ["SimpleSink"],
+      "taint_target": ["ArgumentPositions", [0]]
+    },
+    { "procedure": "my_log",
+    "kinds": ["SimpleSink"]
+  }
+  ]
+}
